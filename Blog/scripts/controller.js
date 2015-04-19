@@ -29,7 +29,7 @@ app.controller = (function() {
                 console.log(error);
             })
     }; */ 
-	// Left it for a sample promise to see
+    // Left it for a sample promise to see
 
     return {
         load: function (model) {

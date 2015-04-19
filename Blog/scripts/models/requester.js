@@ -1,4 +1,4 @@
-/* var app = app || {};
+var app = app || {};
 
 app.requester = (function() {
     function Requester(baseUrl) {
@@ -11,6 +11,20 @@ app.requester = (function() {
 
         return makeRequest('GET', headers, url);
     };
+
+    Requester.prototype.post= function(serviceUrl, data) {
+        var headers = getHeaders();
+        var url = this._baseUrl + serviceUrl;
+
+        return makeRequest('POST', headers, url, data);
+    }
+
+    Requester.prototype.put = function (serviceUrl, data) {
+        var headers = getHeaders();
+        var url = this._baseUrl + serviceUrl;
+
+        return makeRequest('PUT', headers, url, data);
+    }
 
     function makeRequest(method, headers, url, data) {
         var deffer = Q.defer();
@@ -33,8 +47,8 @@ app.requester = (function() {
 
     function getHeaders() {
         var headers = {
-            'X-Parse-Application-Id' : 'bJOanga8OB5IsGPzYW8C4ivKVDbZF1sd2hNrAO6z',
-            'X-Parse-REST-API-Key' : 'Isczn96UnuG8CcdaIJYbsI68AeYCqiM1NutbKvCf',
+            'X-Parse-Application-Id': 'sKo68sSKjSy6apd7nXT6uqKzuYxxVKVGKpcFVlS7',
+            'X-Parse-REST-API-Key': 'puzTpPNOVEe4T03iNQ8AuaGmAssb9rxq3VBfcF0w',
             'Content-Type' : 'application/json'
         };
 
@@ -50,7 +64,7 @@ app.requester = (function() {
             return new Requester(baseUrl);
         }
     }
-}()); */
+}()); 
 
 // This should handle requests to parse.com.
 // There should be requests for:

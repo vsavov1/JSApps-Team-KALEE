@@ -1,6 +1,6 @@
 Preparation:
 
-1. Create the requester class. Handle all the requests to the server: ?
+1. Create the requester class. Handle all the requests to the server: Preslav - Done
 
 2. Create the PostsRepo (StudentsRepo atm). Using the requester, load the data necessary in a suitable format (Post model) and in an array: ?
 
