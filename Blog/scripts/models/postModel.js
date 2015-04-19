@@ -8,6 +8,6 @@
     return Student
 }()); */
 
-// A sample student model. 
+// A sample student model from another project. 
 // Correspondingly, we can create a Post model containing:
 //   title, content, author, comments (pointers in parse.com).
