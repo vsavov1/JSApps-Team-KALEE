@@ -1,0 +1,27 @@
+Preparation:
+
+1. Create the requester class. Handle all the requests to the server: ?
+
+2. Create the PostsRepo (StudentsRepo atm). Using the requester, load the data necessary in a suitable format (Post model) and in an array: ?
+
+3. Create the controller. He should be communicating with the PostsRepo (not the requester directly), as well as the view models: ?
+
+4. Create the view models for the different views on the page. Mustache or not, whatever: ?
+
+5. Config the Sammy.js router: Preslav - Done // For now
+
+------------
+
+1. Create Homepage - display all posts: ?
+
+2. Create Login page - Handle logging in. Session tokens, cookies: ?
+
+3. Create New post page - Handle creating a new post. There should be validation for a logged user: ?
+
+4. Create Post page. By a given request(s) get the post which is clicked on and load each of his answers: ?
+
+5. Create CSS: ?
+
+6. Add the site to deployment on a hosting: ?
+
+// Any other ideas guys ?
