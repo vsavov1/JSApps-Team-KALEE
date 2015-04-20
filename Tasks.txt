@@ -2,7 +2,11 @@ Preparation:
 
 1. Create the requester class. Handle all the requests to the server: Preslav - Done
 
-2. Create the PostsRepo (StudentsRepo atm). Using the requester, load the data necessary in a suitable format (Post model) and in an array: ?
+2. Create the Post Model: ?
+
+3. Create the Comment model: ?
+
+2. Create the ServerManager. Using the requester, load the data necessary in a suitable format (Post model) and in an array: Preslav - Partially done
 
 3. Create the controller. He should be communicating with the PostsRepo (not the requester directly), as well as the view models: ?
 

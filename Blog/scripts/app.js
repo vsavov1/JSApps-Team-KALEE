@@ -1,17 +1,26 @@
 var app = app || {};
-// delete sessionStorage["logged-in"];
 
-// var a = app.requester.load('https://api.parse.com/1/');
-// 
-// a.get('login?username=mihayloff&password=qwerty')
-//     .then(function (data) {
-//     sessionStorage["logged-in"] = data.sessionToken;
-//     a.post('logout')
-//         .then(function () {
-//             console.log('success');
-//     });
-// });
 
+// Testing some of the classes
+
+/* var a = app.requester.load('https://api.parse.com/1/');
+
+a.get('login?username=mihayloff&password=qwerty')
+    .then(function (data) {
+    sessionStorage["logged-in"] = data.sessionToken;
+    a.post('logout')
+        .then(function () {
+            console.log('success');
+    });
+}); */
+
+/* var manager = app.serverManager.load('https://api.parse.com/1/');
+manager.getPost('lkPiqgeich').then(function(data) {
+    console.log(data);
+}); */
+
+var manager = app.serverManager.load('https://api.parse.com/1/');
+manager.newPost('Something', 'strange', 'me');
 
 (function() {
     // var model = app.model.load('https://api.parse.com/1/');

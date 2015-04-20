@@ -52,7 +52,7 @@ app.requester = (function() {
             'Content-Type' : 'application/json'
         };
 
-        if(sessionStorage['logged-in']) {
+        if(localStorage['logged-in']) {
             headers['X-Parse-Session-Token'] = sessionStorage['logged-in'];
         }
 
