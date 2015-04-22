@@ -2,10 +2,16 @@
 
 app.registerView = (function() {
     function RegisterView(selector, data) {
-        $.get('templates/register.html', function(template) {
-            var output = Mustache.render(template);
-            $(selector).html(output);
-        })
+        $(selector).empty();
+        $('#rightSide').empty();
+        $('#leftSide').empty();
+
+        if(!$("#register").length){
+            $.get('templates/register.html', function(template) {
+                var output = Mustache.render(template);
+                $(selector).append(output);
+            })
+        }
     }
 
     return {

@@ -67,21 +67,23 @@ manager.newPost('Something', 'strange', 'me');
     var controller = app.controller.load(model);
 
     app.router = Sammy(function () {
-        var selector = '#wrapper';
+        var selector = '#center';
+        var leftBox = '#leftSide';
+        var rightBox = '#rightSide';
 
         this.get('#/', function () {
-            controller.getHomePage(selector);
+            controller.getHomePage(leftBox);
             // Controller - Get homepage
 
             // Add ways to sort posts by get parameter
         });
 
         this.get('#/Login', function () {
-            // Controller - Get Loginpage
+            controller.getLoginPage(selector);
         });
 
          this.get('#/Register', function () {
-            controller.getRegisterPage("#leftSide");
+            controller.getRegisterPage(selector);
         });
 
         this.get('#/Post/:id', function (data) {

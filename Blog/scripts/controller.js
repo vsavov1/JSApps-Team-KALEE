@@ -25,7 +25,7 @@ app.controller = (function() {
     };
 
     Controller.prototype.getLoginPage = function (selector) {
-        // app.loginView.load(selector);
+        app.loginView.load(selector);
 		
 		// Load login view from the view model
     };

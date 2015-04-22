@@ -2,6 +2,9 @@ var app = app || {};
 
 app.homeView = (function() {
     function HomeView(selector, data) {
+        $(selector).empty();
+        $('#rightSide').empty();
+        $('#center').empty();
         $.get('templates/home.html', function(template) {
             var output = Mustache.render(template, data);
 

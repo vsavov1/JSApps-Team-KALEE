@@ -49,20 +49,28 @@ label {
 
 body {
   font-family: Segoe UI Light, Open Sans;
+  /*background-color: #efefef; /*test color*/*/
 }
 
 #mainContaier {
   margin: 0 auto;
   width: 1000px;
-  min-height: 400px;
-  background-color: #efefef; /*test color*/
+  min-height: 500px ;
+  /*background-color: #efefef; /*test color*/*/
 }
 header {
   width: 100%;
   height: 83px;
   background-color: #f6efd5;
   left: 0px;
-  position: absolute;
+  position: fixed;
+}
+footer {
+  width: 100%;
+  height: 83px;
+  background-color: #4e4e4e;
+  left: 0px;
+  margin-top: 250px;
 }
 #headerContainer {
   width: 1000px;
@@ -135,7 +143,7 @@ header {
   width: 1000px;
   height: 62px;
   background-color: #fff;
-  opacity: 0.7;
+  opacity: 0.9;
   margin:0 auto;
   border-bottom: 1px solid #e5e5e5;
 }
@@ -166,25 +174,86 @@ header {
 }
 #register {
   width: 500px;
-  height: 500px;
-  /*display:none;*/
-  background-color: pink;
+  height: 350px;
+  background-color: #fff;
+  margin: auto;
   margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 220px;
+  text-align:center;
+  border-radius: 6px;
+}
+#register h1, #loginPage h1 {
+  margin: auto; 
+  margin-top: 20px;
+  color: #f96c65;
+  font-size: 25px;
 }
 
+#register h3, #loginPage h3{
+  width: 290px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #4c4b4b;
+  font-size: 15px;
+  text-align: center
+}
+#register input, #loginPage input {
+  height: 25px;
+  width: 220px;
+  margin-bottom: 15px;
+  border: 1px solid #e3e4e8 ;
+  border-radius: 5px;
+}
+#register input[type='text'], #loginPage input[type="text"]{
+  padding-left: 5px;
+  padding-bottom: 5px;
+  font-family: Segoe UI Light;
+  font-size: 17px;
+}
+#register label, #loginPage label {
+  margin-bottom: 5px;
+  color: #4c4b4b;
+  font-size: 15px;
+}
+#register button, #loginPage button {
+  width: 130px;
+  height: 45px;
+  margin: auto;
+  background-color: #f96c65;
+  border-radius: 5px;
+  float: center;
+  display: block;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  font-family: Segoe UI Light;
+}
+#loginPage {
+  width: 500px;
+  height: 520px;
+  background-color: #fff;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align:center;
+  border-radius: 6px;
+  margin-left: 220px;
+}
+#center {
+  width: 1000px;
+  height: auto;
+  margin-top: 83px;
+  display: inline-block;
+}
 #leftSide {
   width: 700px;
-  min-height: 100px;
-  float: left;
-  background-color: red;
-  margin-top: 83px;
-  
+  height: auto;
+  display: inline-block;
 }
 #rightSide {
   width: 300px;
-  height: 100px;
+  height: auto;
   float: right;
-  background-color: blue;
-  margin-top: 83px;
 }
-
