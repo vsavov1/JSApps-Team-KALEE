@@ -54,12 +54,10 @@ body {
 #mainContaier {
   margin: 0 auto;
   width: 1000px;
-  min-height: 1300px;
+  min-height: 400px;
   background-color: #efefef; /*test color*/
   /*position: relative;*/
 }
-
-
 header {
   width: 100%;
   height: 83px;
@@ -92,6 +90,7 @@ header {
   -moz-transition:.5s;
   -webkit-transition:.5s;
   transition:.5s;
+  cursor: pointer; 
 }
 #menuButton:hover {
   background-image: url("../img/menuHover.png");
@@ -142,6 +141,7 @@ header {
   opacity: 0.7;
   margin:0 auto;
   border-bottom: 1px solid #e5e5e5;
+  /*position: relative;*/
 }
 #menuLinks {
   height: 40px;
