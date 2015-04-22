@@ -14,6 +14,16 @@ app.controller = (function() {
             });
     };
 
+    Controller.prototype.getPost = function(selector, id){
+        this.model.getPost(id)
+            .then(function(data){
+                app.postView.load(selector, data);
+                console.log(data);
+            }, function(error){
+                console.log(error);
+            });
+    };
+
     Controller.prototype.getLoginPage = function (selector) {
         // app.loginView.load(selector);
 		

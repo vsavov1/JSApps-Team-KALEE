@@ -80,8 +80,10 @@ manager.newPost('Something', 'strange', 'me');
             // Controller - Get Loginpage
         });
 
-        this.get('#/Post', function () {
+        this.get('#/Post/:id', function (data) {
             // Controller - Get Post page
+            var id = data['params'].id;
+            controller.getPost(selector, id);
         });
 
         this.get('#/Create', function () {

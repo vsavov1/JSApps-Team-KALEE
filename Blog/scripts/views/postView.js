@@ -1,8 +1,8 @@
-/* var app = app || {};
+var app = app || {};
 
-app.studentsView = (function() {
-    function StudentsView(selector, data) {
-        $.get('templates/students.html', function(template) {
+app.postView = (function() {
+    function PostView(selector, data) {
+        $.get('templates/post.html', function(template) {
             var output = Mustache.render(template, data);
 
             $(selector).html(output);
@@ -11,9 +11,9 @@ app.studentsView = (function() {
 
     return {
         load: function (selector, data) {
-            return new StudentsView(selector, data);
+            return new PostView(selector, data);
         }
     }
-}()); */
+}());
 
 // This should be the Post view model. Rename the file later

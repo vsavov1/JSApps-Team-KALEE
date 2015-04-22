@@ -45,7 +45,6 @@ app.serverManager = (function() {
 
     ServerManager.prototype.getPost = function (id) {
         // (When logged in only! - add security in the server and don't allow new post screen to show up)
-
         var defer = Q.defer();
         var _this = this;
 
@@ -74,7 +73,6 @@ app.serverManager = (function() {
                         post.addComment(comment);
                     }
                 });
-
             defer.resolve(post);
             }, function(error) {
                 defer.reject(error);
