@@ -1,0 +1,170 @@
+/*start of css rest*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+}
+/*end of css rest*/
+
+label {
+  display: block;
+}
+
+body {
+  font-family: Segoe UI Light, Open Sans;
+}
+
+#mainContaier {
+  margin: 0 auto;
+  width: 1000px;
+  min-height: 1300px;
+  background-color: #efefef; /*test color*/
+  /*position: relative;*/
+}
+
+
+header {
+  width: 100%;
+  height: 83px;
+  float: left;
+  background-color: #f6efd5;
+  position: fixed;
+  margin: 0 ;
+  left: 0px;
+}
+#headerContainer {
+  width: 1000px;
+  height: 83px;
+  margin: 0 auto;
+}
+#logo {
+  width: 153px;
+  height: 57px;
+  margin-top: 15px;
+  background-image: url("../img/logo.png");
+  float: left;
+}
+#menuButton {
+  width: 41px;
+  height: 37px;
+  float: right;
+  margin-top: 25px;
+  background-image: url("../img/menu.png");
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+}
+#menuButton:hover {
+  background-image: url("../img/menuHover.png");
+}
+#registerButton {
+  width: 195px;
+  height: 37px;
+  background-color: #f96c65;
+  float: right;
+  margin-top: 25px;
+  border-radius: 6px;
+  margin-right: 20px;
+  text-decoration: none;
+  color: #fff;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+}
+#registerButton:hover {
+  background-color: #de5959;
+}
+#registerButton p {
+  margin-left: 25px;
+  margin-top: 8px;
+  font-size: 18px;
+}
+#loginButton {
+  width: 60px;
+  height: 37px;
+  float: right;
+  margin-top: 25px;
+  margin-right: 20px;
+  text-decoration: none;
+  color: #f96c65;
+}
+#loginButton p {
+  margin-left: 25px;
+  margin-top: 8px;
+  font-size: 18px;
+}
+#dropDownMenu {
+  display:none;
+  width: 1000px;
+  height: 62px;
+  background-color: #fff;
+  opacity: 0.7;
+  margin:0 auto;
+  border-bottom: 1px solid #e5e5e5;
+}
+#menuLinks {
+  height: 40px;
+  font-size: 20px;
+  float: left;
+  margin-top: 20px;
+}
+#menuLinks a {
+  color: #4c4b4b;
+  display: inline;
+  margin-left: 25px;
+  text-decoration: none;
+}
+#menuLinks a:hover{
+  border-bottom: 2px solid #f96c65;
+}
+#search img{
+  float: right;
+  width: 32px;
+  height: 32px;
+  margin-right: 13px;
+  margin-top: 14px;
+}
+#search img:hover {
+  opacity: 0.8;
+}
