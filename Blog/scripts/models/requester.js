@@ -26,6 +26,13 @@ app.requester = (function() {
         return makeRequest('PUT', headers, url, data);
     }
 
+    Requester.prototype.delete = function (serviceUrl) {
+        var headers = getHeaders();
+        var url = this._baseUrl + serviceUrl;
+
+        return makeRequest('DELETE', headers, url);
+    }
+
     function makeRequest(method, headers, url, data) {
         var deffer = Q.defer();
 
