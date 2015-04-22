@@ -30,9 +30,9 @@ app.controller = (function() {
 		// Load login view from the view model
     };
 
-    /* Controller.prototype.getRegisterPage = function (selector) {
+     Controller.prototype.getRegisterPage = function (selector) {
         app.registerView.load(selector);
-    }; */ // No register page for now
+    };  // No register page for now
 
     /* Controller.prototype.getStudentsPage = function (selector) {
         this.model.getStudents()

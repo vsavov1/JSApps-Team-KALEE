@@ -1,10 +1,9 @@
-/* var app = app || {};
+ var app = app || {};
 
 app.registerView = (function() {
     function RegisterView(selector, data) {
         $.get('templates/register.html', function(template) {
             var output = Mustache.render(template);
-
             $(selector).html(output);
         })
     }
@@ -14,6 +13,6 @@ app.registerView = (function() {
             return new RegisterView(selector, data);
         }
     }
-}()); */
+}()); 
 
 // We don't have one for now

@@ -18,4 +18,3 @@ $(window).bind('mousewheel', function(event) {
     }
 });
 
-
