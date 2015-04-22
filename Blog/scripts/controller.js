@@ -6,9 +6,12 @@ app.controller = (function() {
     }
 
     Controller.prototype.getHomePage = function (selector) {
-        // app.homeView.load(selector);
-		
-		// Load home view from the view model - display all the posts
+        this.model.getPosts(0, 2)
+            .then(function(data){
+                app.homeView.load(selector, data);
+            }, function(error){
+                console.error(error);
+            });
     };
 
     Controller.prototype.getLoginPage = function (selector) {

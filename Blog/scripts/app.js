@@ -63,16 +63,17 @@ manager.newPost('Something', 'strange', 'me');
 */
 
 (function() {
-    // var model = app.model.load('https://api.parse.com/1/');
-    // var controller = app.controller.load(model);
+    var model = app.serverManager.load('https://api.parse.com/1/');
+    var controller = app.controller.load(model);
 
     app.router = Sammy(function () {
         var selector = '#wrapper';
 
         this.get('#/', function () {
+            controller.getHomePage(selector);
             // Controller - Get homepage
-			
-			// Add ways to sort posts by get parameter
+
+            // Add ways to sort posts by get parameter
         });
 
         this.get('#/Login', function () {
