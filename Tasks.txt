@@ -16,13 +16,13 @@ Preparation:
 
 ------------
 
-1. Create Homepage - display all posts: ?
+1. Create Homepage - display all posts: Valentin - Done
 
 2. Create Login page - Handle logging in. Session tokens, cookies: ?
 
 3. Create New post page - Handle creating a new post. There should be validation for a logged user: ?
 
-4. Create Post page. By a given request(s) get the post which is clicked on and load each of his answers: ?
+4. Create Post page. By a given request(s) get the post which is clicked on and load each of his answers: Valentin - Done
 
 5. Create CSS: ?
 
