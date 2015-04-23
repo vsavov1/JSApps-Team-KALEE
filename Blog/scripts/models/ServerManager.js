@@ -6,6 +6,7 @@ var app = app || {};
 app.serverManager = (function() {
     function ServerManager(requester) {
         this._requester = requester;
+        this._userRoleId = 'xhUdV5Q3FI';
         this.postsRepo = {
             posts: []
         };
@@ -225,7 +226,7 @@ app.serverManager = (function() {
      */
     ServerManager.prototype.logout = function() {
         var defer = Q.defer();
-        this._requester.post('logout').then(function (data) {
+        this._requester.post('logout').then(function(data) {
             delete localStorage['logged-in'];
             defer.resolve(data);
         }, function(error) {
@@ -235,6 +236,46 @@ app.serverManager = (function() {
         return defer.promise;
     }
 
+    /*
+     * Registers a given user with given password.
+     */
+    ServerManager.prototype.register = function(username, password) {
+        var defer = Q.defer();
+        var _this = this;
+
+        var userData = {
+            'username': username,
+            'password' : password
+        }
+
+        this._requester.post('users', userData).then(function(data) {
+            var roleData = {
+                "users":
+                    {
+                        "__op": "AddRelation",
+                        "objects":
+                            [
+                              {
+                                  "__type": "Pointer",
+                                  "className": "_User",
+                                  "objectId": data.objectId
+                              }
+                            ]
+                    }
+            }
+
+            _this._requester.put('roles/' + _this._userRoleId, roleData).then(function (data) {
+                defer.resolve(data);
+            }, function(error) {
+                defer.reject(error);
+            });
+
+        }, function(error) {
+            defer.reject(error);
+        });
+
+        return defer.promise;
+    }
 
     return {
         load: function (baseUrl) {

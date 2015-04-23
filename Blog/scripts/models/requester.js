@@ -34,7 +34,7 @@ app.requester = (function() {
     }
 
     function makeRequest(method, headers, url, data) {
-        var deffer = Q.defer();
+        var defer = Q.defer();
 
         $.ajax({
             method: method,
@@ -42,14 +42,14 @@ app.requester = (function() {
             url: url,
             data: JSON.stringify(data),
             success: function (data) {
-                deffer.resolve(data);
+                defer.resolve(data);
             },
             error: function (error) {
-                deffer.reject(error);
+                defer.reject(error);
             }
         });
 
-        return deffer.promise;
+        return defer.promise;
     }
 
     function getHeaders() {

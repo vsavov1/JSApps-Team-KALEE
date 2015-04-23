@@ -1,66 +1,20 @@
 var app = app || {};
 
-/* Deleting posts
- 
-var manager = app.serverManager.load('https://api.parse.com/1/');
-manager.deletePost('7DNlNO8ujT');
+// Demonstrating poppy.js library as well as registering.
 
-*/
+// var manager = app.serverManager.load(app.requester.load('https://api.parse.com/1/'));
+// manager.newPost('some', 'post', 'random').then(function(data) {
+//     
+// }, function(error) {
+//     poppy.pop('success', 'Error', error.statusText);
+//     poppy.pop('error', 'Error', error.statusText);
+// }).done();
 
-/*
-Testing posts
-
-var post = new Post('1', 'ass', 'some', 'me');
-var post1 = new Post('2', 'some', 'aa', 'gg');
-console.log(post.title);
-console.log(post1.title);
-
-var a = app.serverManager.load('https://api.parse.com/1/');
-a.getPosts().then(function(data) {
-    for (var post in data.posts) {
-        console.log(data.posts[post]);
-    }
-});
-
-var manager = app.serverManager.load('https://api.parse.com/1/');
-manager.getPost('7DNlNO8ujT').then(function(post) {
-    console.log(post);
-});
-
-*/
-
-// Testing some of the classes
-
-/* 
-var a = app.requester.load('https://api.parse.com/1/');
-
-a.get('login?username=mihayloff&password=qwerty')
-    .then(function (data) {
-    sessionStorage["logged-in"] = data.sessionToken;
-    a.post('logout')
-        .then(function () {
-            console.log('success');
-    });
-}); 
-
-*/
-
-
-/* 
-
-var manager = app.serverManager.load('https://api.parse.com/1/');
-manager.getPost('lkPiqgeich').then(function(data) {
-    console.log(data);
-}); 
-
-*/
-
-/* Testing posting new post
-
-var manager = app.serverManager.load('https://api.parse.com/1/');
-manager.newPost('Something', 'strange', 'me');
-
-*/
+// manager.register('pesho', 'tosho').then(function(data) {
+//     poppy.pop('success', 'Success', 'Successfully registered');
+// }, function(error) {
+//     poppy.pop('error', 'Error', error.statusText);
+// })
 
 (function() {
     var model = app.serverManager.load(app.requester.load('https://api.parse.com/1/'));
