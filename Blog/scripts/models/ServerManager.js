@@ -1,13 +1,19 @@
 var app = app || {};
 
+/*
+ * This is the model working directly with the requester and handling requests to the server.
+ */
 app.serverManager = (function() {
-    function ServerManager(baseUrl) {
-        this._requester = app.requester.load(baseUrl);
+    function ServerManager(requester) {
+        this._requester = requester;
         this.postsRepo = {
             posts: []
         };
     }
 
+    /*
+     * Returns a promise containing an array of Post objects or an error
+     */
     ServerManager.prototype.getPosts = function (start, length) {
         var defer = Q.defer();
         var _this = this;
@@ -43,6 +49,9 @@ app.serverManager = (function() {
         return defer.promise;
     };
 
+    /*
+     * Returns a Post object containing an array of objects of type Comment.
+     */
     ServerManager.prototype.getPost = function (id) {
         // (When logged in only! - add security in the server and don't allow new post screen to show up)
         var defer = Q.defer();
@@ -82,6 +91,9 @@ app.serverManager = (function() {
 
     } 
 
+    /*
+     * Creates a new post in the database with the given title, author and content
+     */
     ServerManager.prototype.newPost = function(title, content, author) {
         var defer = Q.defer();
         var data = {
@@ -99,6 +111,9 @@ app.serverManager = (function() {
         return defer.promise;
     }
 
+    /*
+     * Edits a given post from the database, switching the old properties with the new ones.
+     */
     ServerManager.prototype.editPost = function(id, title, content, author) {
         var defer = Q.defer();
         var data = {
@@ -117,18 +132,82 @@ app.serverManager = (function() {
         return defer.promise;
     }
 	
+    /*
+     * Deletes a given post from the database by objectId
+     */
 	ServerManager.prototype.deletePost = function(id) {
 	    var defer = Q.defer();
 
-	    this._requester.delete('classes/Post/' + id);
-        // delete the comments corresponding to this post
+	    this._requester.delete('classes/Post/' + id).then(function(data) {
+	        defer.resolve(data);
+	    }, function(error) {
+	        defer.reject(error);
+	    });
+
+	    var whereParameter = '{' +
+                    '"post":' +
+                        '{"__type":"Pointer","className":"Post","objectId":"' + id + '"}' +
+                    '}';
+
+	    _this._requester.get('classes/Comment?where=' + whereParameter)
+            .then(function (data) {
+                for (var comment in data.results) {
+                    this.deleteComment(data.results[comment].objectId);
+                }
+            });
+
+	    return defer.promise;
 	}
 
-    // Post a comment
-    // Delete a comment
+    /*
+     * Creates a new Comment in the database for a given post (given by objectId) 
+     * with the corresponding properties (author, content).
+     */
+    ServerManager.prototype.postComment = function(postId, author, content) {
+        var defer = Q.defer();
+        var data = {
+            "content": content,
+            "author" : author,
+            "post": {
+                "__type": "Pointer",
+                "className": "Post",
+                "objectId": postId
+            }
+        };
 
+        this._requester.post('classes/Comment', data)
+            .then(function (data) {
+                defer.resolve(data);
+            }, function (error) {
+               defer.reject(error);
+            });;
+
+        return defer.promise;
+    }
+
+    /*
+     * Deletes a given Comment from the database by a given objectId
+     */
+    ServerManager.prototype.deleteComment = function (id) {
+        var defer = Q.defer();
+
+        this._requester.delete('classes/Comment/' + id)
+            .then(function (data) {
+                defer.resolve(data);
+            }, function (error) {
+                defer.reject(error);
+            });;
+
+        return defer.promise;
+    }
+
+    /*
+     * Logs in an existing user from the database by a given username and password.
+     * Also sets a "logged-in" key in the localStorage containing the received sessionToken
+     */
     ServerManager.prototype.login = function(username, password) {
         var defer = Q.defer();
+    
         this._requester.get('login?username=' + username + '&password=' + password)
             .then(function(data) {
                 localStorage["logged-in"] = data.sessionToken;
@@ -140,9 +219,14 @@ app.serverManager = (function() {
         return defer.promise;
     }
 
+    /*
+     * Logs out the current user from the parse.com database.
+     * Also deletes the current sessionToken from the localStorage.
+     */
     ServerManager.prototype.logout = function() {
         var defer = Q.defer();
-        this._requester.post('logout').then(function(data) {
+        this._requester.post('logout').then(function (data) {
+            delete localStorage['logged-in'];
             defer.resolve(data);
         }, function(error) {
             defer.reject(error);

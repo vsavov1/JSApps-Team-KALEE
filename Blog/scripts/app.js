@@ -63,7 +63,7 @@ manager.newPost('Something', 'strange', 'me');
 */
 
 (function() {
-    var model = app.serverManager.load('https://api.parse.com/1/');
+    var model = app.serverManager.load(app.requester.load('https://api.parse.com/1/'));
     var controller = app.controller.load(model);
 
     app.router = Sammy(function () {
