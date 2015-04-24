@@ -5,6 +5,15 @@ app.controller = (function() {
         this.model = model;
     }
 
+    Controller.prototype.getAdminPage = function (selector) {
+        this.model.getPosts(0, 2)
+            .then(function(data){
+                app.adminView.load(selector, data);
+            }, function(error){
+                console.error(error);
+            });
+    };
+
     Controller.prototype.getHomePage = function (selector) {
         this.model.getPosts(0, 2)
             .then(function(data){
