@@ -39,7 +39,7 @@ manager.isValidAdmin().then(function(data) {
         var rightBox = '#rightSide';
 
         this.get('#/', function () {
-            controller.getHomePage(leftBox);
+            controller.getAdminPage(leftBox);
             // Controller - Get homepage
 
             // Add ways to sort posts by get parameter
