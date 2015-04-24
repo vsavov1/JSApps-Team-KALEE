@@ -4,7 +4,6 @@ var Post = (function() {
         this.title = title;
         this.content = content;
         this.author = author;
-        this.array = [];
         this.dateCreated = dateCreated;
         if (!comments) {
             this.comments = [];
