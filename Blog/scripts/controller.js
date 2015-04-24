@@ -14,11 +14,15 @@ app.controller = (function() {
             });
     };
 
-    Controller.prototype.getPost = function(selector, id){
+    Controller.prototype.getSinglePostPage = function(selector, id){
         this.model.getPost(id)
             .then(function(data){
                 app.postView.load(selector, data);
-                console.log(data);
+
+
+                $('#commentSend').on('click', function(){
+                    alert('asd');
+                });
             }, function(error){
                 console.log(error);
             });

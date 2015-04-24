@@ -1,2 +1,22 @@
+<div>Author: {{author}}</div>
 <div>Title: {{title}}</div>
 <div>Content: {{content}}</div>
+<br />
+<br />
+Comments:
+<hr />
+Name: <input type="text" id="name" /><br />
+Comment: <input type="text" id="comment" /><br />
+<button id="commentSend">Send</button>
+
+
+<br />
+<br />
+<div id="comments">
+{{#comments}}
+    <div class="comment">
+        Author: {{author}}<br />
+        Comment: {{content}}<br />
+    </div><br />
+{{/comments}}
+</div>

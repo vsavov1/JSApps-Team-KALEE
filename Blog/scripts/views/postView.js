@@ -4,7 +4,6 @@ app.postView = (function() {
     function PostView(selector, data) {
         $.get('templates/post.html', function(template) {
             var output = Mustache.render(template, data);
-
             $(selector).html(output);
         })
     }

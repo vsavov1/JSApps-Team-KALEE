@@ -83,8 +83,10 @@ app.serverManager = (function() {
                         var comment = new Comment(id, content, author, dateCreated);
                         post.addComment(comment);
                     }
+
+                    defer.resolve(post);
                 });
-            defer.resolve(post);
+
             }, function(error) {
                 defer.reject(error);
             });

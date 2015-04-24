@@ -26,7 +26,7 @@ var manager = app.serverManager.load(app.requester.load('https://api.parse.com/1
 manager.isValidAdmin().then(function(data) {
     console.log(data);
 }, function(error) {
-    console.log(error);
+    //console.log(error);
 });
 
 (function() {
@@ -56,7 +56,8 @@ manager.isValidAdmin().then(function(data) {
         this.get('#/Post/:id', function (data) {
             // Controller - Get Post page
             var id = data['params'].id;
-            controller.getPost(selector, id);
+            controller.getSinglePostPage(selector, id);
+
         });
 
         this.get('#/Create', function () {

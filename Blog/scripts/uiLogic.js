@@ -3,7 +3,7 @@ $(document).ready(function(e){
    $('#menuButton').on('click',function(){
       $('#dropDownMenu').slideToggle();
    });
-})
+});
 
 $(document.body).mouseup(function(event) {
   var target = $(event.target);

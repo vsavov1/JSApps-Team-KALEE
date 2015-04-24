@@ -7,7 +7,6 @@ app.homeView = (function() {
         $('#center').empty();
         $.get('templates/home.html', function(template) {
             var output = Mustache.render(template, data);
-
             $(selector).html(output);
         });
 		
