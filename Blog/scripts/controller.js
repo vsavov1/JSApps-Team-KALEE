@@ -6,7 +6,7 @@ app.controller = (function() {
     }
 
     Controller.prototype.getHomePage = function (selector) {
-        this.model.getPosts(0, 2)
+        this.model.getPosts(1, 5)
             .then(function(data){
                 app.homeView.load(selector, data);
             }, function(error){
@@ -18,8 +18,6 @@ app.controller = (function() {
         this.model.getPost(id)
             .then(function(data){
                 app.postView.load(selector, data);
-
-
                 $('#commentSend').on('click', function(){
                     alert('asd');
                 });

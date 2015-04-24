@@ -1,3 +1,4 @@
+var app = app || {};
 
 $(document).ready(function(e){
    $('#menuButton').on('click',function(){
@@ -18,3 +19,7 @@ $(window).bind('mousewheel', function(event) {
     }
 });
 
+function testLogin (argument) {
+  // app.serverManager.login();
+  app.model.login();
+}

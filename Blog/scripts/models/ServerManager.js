@@ -32,17 +32,17 @@ app.serverManager = (function() {
                 if (!data.results[index]) {
                     break;
                 }
-
                 var id = data.results[index].objectId;
                 var title = data.results[index].title;
                 var content = data.results[index].content;
                 var author = data.results[index].author;
                 var dateCreated = data.results[index].createdAt;
-
-                var post = new Post(id, title, content, author, dateCreated);
+                var viewsCount = data.results[index].viewsCount;
+                var voteCount = data.results[index].voteCount;
+                var commentsCount = data.results[index].commentsCount;
+                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
                 _this.postsRepo.posts.push(post);
             }
-
             defer.resolve(_this.postsRepo);
             }, function (error) {
                 defer.reject(error);
