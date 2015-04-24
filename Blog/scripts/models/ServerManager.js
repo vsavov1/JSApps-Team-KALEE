@@ -7,6 +7,7 @@ app.serverManager = (function() {
     function ServerManager(requester) {
         this._requester = requester;
         this._userRoleId = 'xhUdV5Q3FI';
+        this._adminRoleId = 'wcSwXfFGjz';
         this.postsRepo = {
             posts: []
         };
@@ -273,6 +274,73 @@ app.serverManager = (function() {
         }, function(error) {
             defer.reject(error);
         });
+
+        return defer.promise;
+    }
+
+    /*
+     * Not complete.
+     */
+    ServerManager.prototype.currentUserInfo = function() {
+        var defer = Q.defer();
+        this._requester.get('sessions/me')
+            .then(function(data) {
+                defer.resolve(data);
+            }, function(error) {
+                defer.reject(error);
+            });
+
+        return defer.promise;
+    }
+
+    /*
+     * Use to identify whether the current user (checked via the session ID) is an admin
+     * Returns a promise, which can either contain true or false (If every request went ok).
+     */
+    ServerManager.prototype.isValidAdmin = function() {
+        var _this = this;
+        return identifyRole(_this, this._adminRoleId);
+    }
+
+    /*
+     * Use to identify whether the current user (checked via the session ID) is a valid user
+     * Returns a promise, which can either contain true or false (If every request went ok).
+     */
+    ServerManager.prototype.isValidUser = function () {
+        var _this = this;
+        return identifyRole(_this, this._userRoleId);
+    }
+
+    function identifyRole(_this, roleId) {
+        var defer = Q.defer();
+
+        var whereParameter = '?where={' +
+                                '"$relatedTo":' +
+                                    '{"object":' +
+                                        '{"__type":"Pointer",' +
+                                        '"className":"_Role",' +
+                                        '"objectId":"' + roleId + '"},' +
+                                        '"key":"users"}}';
+
+        _this._requester.get('sessions/me')
+            .then(function (userData) {
+
+                _this._requester.get('users' + whereParameter)
+                    .then(function (roleData) {
+                        for (var user in roleData.results) {
+                            if (roleData.results[user].objectId === userData.user['objectId']) {
+                                defer.resolve(true);
+                                return;
+                            }
+                        }
+
+                        defer.reject(false);
+                    }, function (error) {
+                        defer.reject(error);
+                    });
+            }, function (error) {
+                defer.reject(error);
+            });
 
         return defer.promise;
     }

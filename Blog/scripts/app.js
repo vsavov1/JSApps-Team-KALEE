@@ -2,7 +2,7 @@ var app = app || {};
 
 // Demonstrating poppy.js library as well as registering.
 
-// var manager = app.serverManager.load(app.requester.load('https://api.parse.com/1/'));
+var manager = app.serverManager.load(app.requester.load('https://api.parse.com/1/'));
 // manager.newPost('some', 'post', 'random').then(function(data) {
 //     
 // }, function(error) {
@@ -15,6 +15,19 @@ var app = app || {};
 // }, function(error) {
 //     poppy.pop('error', 'Error', error.statusText);
 // })
+// if (localStorage['logged-in']) {
+//     manager.logout();
+// }
+// manager.login('mihayloff', 'developer').then(function(data) {
+//     console.log(data);
+// }, function(error) {
+//     console.log(error);
+// });
+manager.isValidAdmin().then(function(data) {
+    console.log(data);
+}, function(error) {
+    console.log(error);
+});
 
 (function() {
     var model = app.serverManager.load(app.requester.load('https://api.parse.com/1/'));

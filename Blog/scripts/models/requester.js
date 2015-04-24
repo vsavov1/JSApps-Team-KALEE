@@ -60,7 +60,7 @@ app.requester = (function() {
         };
 
         if(localStorage['logged-in']) {
-            headers['X-Parse-Session-Token'] = sessionStorage['logged-in'];
+            headers['X-Parse-Session-Token'] = localStorage['logged-in'];
         }
 
         return headers;
