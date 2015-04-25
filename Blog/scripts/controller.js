@@ -6,12 +6,36 @@ app.controller = (function() {
     }
 
     Controller.prototype.getHomePage = function (selector) {
+        // this request will be for TOP POSTS
+        // this.model.getPosts(1, 5)
+        //     .then(function(data){
+        //         app.homeView.load(selector, data);
+        //     }, function(error){
+        //         console.error(error);
+        //     });
+
+      this.model.getTopPosts()
+        .then(function(data){
+            app.homeView.load(selector, data, true);
+        }, function(error){
+            console.error(error);
+        })
+       
+        // this request will be for TRENDING POSTS
         this.model.getPosts(1, 5)
             .then(function(data){
-                app.homeView.load(selector, data);
+                app.homeView.load(selector, data, false);
             }, function(error){
                 console.error(error);
             });
+
+        // this request will be for MOST VOTED POSTS ?
+        // this.model.getPosts(1, 5)
+        //     .then(function(data){
+        //         app.homeView.load(selector, data, false);
+        //     }, function(error){
+        //         console.error(error);
+        //     });
     };
 
     Controller.prototype.getSinglePostPage = function(selector, id){

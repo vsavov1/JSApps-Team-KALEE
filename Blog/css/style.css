@@ -70,7 +70,7 @@ footer {
   height: 83px;
   background-color: #4e4e4e;
   left: 0px;
-  margin-top: 250px;
+  margin-top: 30px;
 }
 #headerContainer {
   width: 1000px;
@@ -260,13 +260,12 @@ footer {
 .largePost{
   margin-top: 10px;
   margin-bottom: 20px;
-  width: 300px;
+  width: 350px;
   height: 315px;
   float: left;
 }
 .largePost h3 {
   height: 45px;
- 
 }
 .largePost h3 a{
   margin-top: 5px;
@@ -343,4 +342,13 @@ footer {
   color: #a6a6a6;
   float: left;
   margin-left: 8px;
+}
+hr {
+  width: 700px;
+  height: 2px;
+  background-color: #a6a6a6 ;
+  border: none;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  float:left;
 }
