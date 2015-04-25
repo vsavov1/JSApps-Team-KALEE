@@ -5,14 +5,25 @@ app.loginView = (function() {
         $(selector).empty();
         $('#rightSide').empty();
         $('#leftSide').empty();
-        
+
         $.get('templates/login.html', function(template) {
             var output = Mustache.render(template);
             $(selector).html(output);
-            $('#loginButton').click(function (app) {
-                app.controller.getHomePage(selector);
+            $('#loginUserButton').click(function () {
+                var username = $('#username').val();
+                var password = $('#password').val();
+                app.model.login(username, password)
+                    .then(function (data) {
+                        var splitted = window.location.href.split('#');
+                        window.location.replace(splitted[0] + '#/');
+                        poppy.pop('success', 'Success', 'You have logged in successfully');
+                    }, function (error) {
+                        $('#username').val('');
+                        $('#password').val('');
+                        poppy.pop('error', 'Invalid Login', 'The username or password is incorrect');
+                    });
             });
-        })
+        });
     }
 	
 	// Sample solution using mustache - not necessary, can do it with DOM Manipulation as well.

@@ -6,6 +6,12 @@ app.controller = (function() {
     }
 
     Controller.prototype.getHomePage = function (selector) {
+        if (localStorage['logged-in']) {
+            $('#loginButton').html('<p>Logout</p>');
+        } else {
+            $('#loginButton').html('<p>Login</p>');
+        }
+
         // this request will be for TOP POSTS
         // this.model.getPosts(1, 5)
         //     .then(function(data){
@@ -51,8 +57,16 @@ app.controller = (function() {
     };
 
     Controller.prototype.getLoginPage = function (selector) {
-        app.loginView.load(selector);
-		
+        if (localStorage['logged-in']) {
+            app.model.logout().then(function(data) {
+                var splitted = window.location.href.split('#');
+                window.location.replace(splitted[0] + '#/');
+                poppy.pop('success', 'Success', 'You have logged out successfully');
+            });
+        } else {
+            app.loginView.load(selector);
+        }
+        
 		// Load login view from the view model
     };
 
