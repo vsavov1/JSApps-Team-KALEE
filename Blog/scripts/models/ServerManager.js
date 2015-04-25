@@ -318,7 +318,7 @@ app.serverManager = (function() {
      */
     ServerManager.prototype.currentUserInfo = function() {
         var defer = Q.defer();
-        this._requester.get('sessions/me')
+        this._requester.get('users/me')
             .then(function(data) {
                 defer.resolve(data);
             }, function(error) {

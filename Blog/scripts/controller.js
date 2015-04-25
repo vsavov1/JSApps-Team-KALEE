@@ -44,15 +44,18 @@ app.controller = (function() {
         //     });
     };
 
-    Controller.prototype.getSinglePostPage = function(selector, id){
+    Controller.prototype.getSinglePostPage = function (selector, id) {
+        $('#center').html('');
         this.model.getPost(id)
-            .then(function(data){
+            .then(function (data) {
+                if (localStorage['logged-in']) {
+                    data["logged-in"] = true;
+                }
                 app.postView.load(selector, data);
-                $('#commentSend').on('click', function(){
-                    alert('asd');
-                });
-            }, function(error){
-                console.log(error);
+
+            }, function(error) {
+                poppy.pop('error', 'Error', 'There was an error loading this post. ' +
+                    'Please try again later.');
             });
     };
 

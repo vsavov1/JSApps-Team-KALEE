@@ -11,13 +11,13 @@ var Post = (function() {
         this.commentsCount = comments;
 
         //Махнах коментарите тъй като в таблицата в парсе ги няма // Веселин
-        // if (!comments) {
-        //     this.comments = [];
-        //     this.commentsCount = 0; 
-        // } else {
-        //     this.comments = comments;
-        //     this.commentsCount = comments.length; 
-        // }
+        if (!comments) {
+            this.comments = [];
+            this.commentsCount = 0; 
+        } else {
+            this.comments = comments;
+            this.commentsCount = comments.length; 
+        }
     }
 
     Post.prototype.addComment = function(comment) {

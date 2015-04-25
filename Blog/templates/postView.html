@@ -1,0 +1,23 @@
+<div>Author: {{author}}</div>
+<div>Title: {{title}}</div>
+<div>Content: {{content}}</div>
+<br />
+<br />
+<div>Comments:</div>
+
+<br />
+<br />
+<div id="comments">
+    {{#comments}}
+    <div class="comment">
+        Author: {{author}}<br/>
+        Comment: {{content}}<br/>
+    </div><br/>
+    {{/comments}}
+</div>
+<br/>
+{{#logged-in}}
+Comment: <br/>
+<textarea id="commentContent" rows="4" cols="30"></textarea>
+<button id="commentSend">Send</button>
+{{/logged-in}}
