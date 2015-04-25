@@ -250,10 +250,97 @@ footer {
 #leftSide {
   width: 700px;
   height: auto;
-  display: inline-block;
+  display: inline-block; 
 }
 #rightSide {
   width: 300px;
   height: auto;
   float: right;
+}
+.largePost{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 300px;
+  height: 315px;
+  float: left;
+}
+.largePost h3 {
+  height: 45px;
+ 
+}
+.largePost h3 a{
+  margin-top: 5px;
+  font-size: 20px;
+  height: 45px;
+  color: #f96c65;
+  text-decoration: none;
+}
+
+#topPost {
+  margin-top: 10px;
+  font-size: 20px;
+  color: #f96c65;
+}
+.largePostInfo {
+  width: 195px;
+  height: 35px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+
+.viewsCount img {
+  float: left;
+}
+.viewsCount{
+  margin-top: 10px;
+  margin-left: 5px;
+  height: 35px;
+  width: 60px;
+  float: left;
+}
+
+.viewsCount h4{
+  width: 15px;
+  color: #a6a6a6;
+  float: left;
+  margin-left: 8px;
+}
+
+.commentsCount img {
+  float: left;
+}
+.commentsCount{
+  margin-top: 10px;
+  margin-left: 5px;
+  height: 35px;
+  width: 60px;
+  float: left;
+}
+
+.commentsCount h4{
+  width: 15px;
+  color: #a6a6a6;
+  float: left;
+  margin-left: 8px;
+}
+
+
+.voteCount img {
+  float: left;
+}
+.voteCount{
+  margin-top: 10px;
+  margin-left: 5px;
+  height: 35px;
+  width: 60px;
+  float: left;
+}
+
+.voteCount h4{
+  width: 15px;
+  color: #a6a6a6;
+  float: left;
+  margin-left: 8px;
 }
