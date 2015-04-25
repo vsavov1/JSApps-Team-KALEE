@@ -12,7 +12,14 @@ app.loginView = (function() {
             $('#loginUserButton').click(function () {
                 var username = $('#username').val();
                 var password = $('#password').val();
-                app.model.login(username, password)
+                if (username.length < 4) {
+                    poppy.pop('error', 'Invalid username', 'The username cannot be' +
+                        ' less than 4 characters long');
+                } else if (password.length < 4) {
+                    poppy.pop('error', 'Invalid password', 'The password cannot be' +
+                        ' less than 4 characters long');
+                } else {
+                    app.model.login(username, password)
                     .then(function (data) {
                         var splitted = window.location.href.split('#');
                         window.location.replace(splitted[0] + '#/');
@@ -22,6 +29,7 @@ app.loginView = (function() {
                         $('#password').val('');
                         poppy.pop('error', 'Invalid Login', 'The username or password is incorrect');
                     });
+                }
             });
         });
     }

@@ -14,7 +14,14 @@ app.registerView = (function() {
                     var username = $('#username').val();
                     var password = $('#password').val();
                     var repeatPassword = $('#repeat-password').val();
-                    if (password === repeatPassword) {
+
+                    if (username.length < 4) {
+                        poppy.pop('error', 'Invalid username', 'The username must be' +
+                            ' at least 4 characters long.');
+                    } else if (password.length < 4) {
+                        poppy.pop('error', 'Invalid password', 'The password must be ' +
+                            'at least 4 characters long.');
+                    } else if (password === repeatPassword) {
                         app.model.register(username, password)
                             .then(function(data) {
                                 var splitted = window.location.href.split('#');
