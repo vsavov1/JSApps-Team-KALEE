@@ -9,7 +9,6 @@ var Post = (function() {
         // this.dateCreated = dateParts[0] + "/" +  dateParts[1] - 1 + "/" +;
         var date = new Date(dateCreated);
         this.dateCreated = ((date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear());
-        console.log(this.dateCreated);
         this.viewsCount = viewsCount;
         this.voteCount = voteCount; 
         this.commentsCount = commentsCount;

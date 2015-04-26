@@ -146,9 +146,10 @@ app.serverManager = (function() {
                         var id = data.results[comment].objectId;
                         var content = data.results[comment].content;
                         var author = data.results[comment].author;
-                        var dateCreated = data.results[comment].createdAt;
+                        var date = new Date(data.results[comment].createdAt);
+                        var dateCreated = ((date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear());
 
-                        var comment = new Comment(id, content, author, dateCreated);
+                        var comment = new Comment(id, content, author, dateCreated, commentNumber);
                         post.addComment(comment);
                     }
 
