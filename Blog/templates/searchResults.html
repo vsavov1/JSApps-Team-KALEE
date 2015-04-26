@@ -1,0 +1,14 @@
+{{#posts}}
+	<div class="searchPost">
+		<!-- <img src="{{imgSoruce}}" alt=""> -->
+		<div><a href="#/Post/{{id}}"><img src="./img/test2.jpg" alt=""></a></div>
+		<h3><a href="#/Post/{{id}}">{{title}}</a></h3>
+		<div class="searchPostContent"><p>{{content}}</p></div>
+		<div class="searchPostInfo">
+			<div class="viewsCount"><img src="./img/viewIcon.png" alt=""><h4>{{viewsCount}}</h4></div>
+			<div class="commentsCount"><img src="./img/commentIcon.png" alt=""><h4>{{commentsCount}}<h4></div>
+			<div class="voteCount"><img src="./img/likeIcon.png" alt=""><h4>{{voteCount}}</h4></div>
+		</div>
+		<div class="readMore"><a href="#/Post/{{id}}">Read more</div>
+	</div>
+{{/posts}}

@@ -13,8 +13,11 @@ app.serverManager = (function() {
         };
         this.topPostRepo = {
             posts: [ ]
-        }
+        };
         this.mostViewPostRepo = {
+            posts: [ ]
+        };
+        this.searchPostRepo = {
             posts: [ ]
         }
     }
@@ -22,6 +25,55 @@ app.serverManager = (function() {
     /*
      * Returns a promise containing an array of Post objects or an error
      */
+
+    ServerManager.prototype.search = function (keyWords) {
+        var defer = Q.defer();
+        var _this = this;
+        this.searchPostRepo.posts.length = 0;
+
+        this._requester.get('classes/Post/')
+            .then(function (data) {
+            var keyWordsRepo = keyWords.split(' ');
+
+            for (var index = 0; index < data.results.length && keyWords.length != 0; index++) {
+                if (!data.results[index]) {
+                    break;
+                }
+                
+                var postWords = data.results[index].content.split(' ');
+                for(var i = 0; i < postWords.length; i++){
+                    for( var z = 0; z < keyWordsRepo.length; z++){
+                        var isContain = false;
+                        if (postWords[i].toLowerCase() === keyWordsRepo[z].toLowerCase()) {
+                           isContain = true;
+                        }
+
+                        if (isContain) {
+                            var id = data.results[index].objectId;
+                            var title = data.results[index].title;
+                            var content = data.results[index].content;
+                            var author = data.results[index].author;
+                            var dateCreated = data.results[index].createdAt;
+                            var viewsCount = data.results[index].viewsCount;
+                            var voteCount = data.results[index].voteCount;
+                            var commentsCount = data.results[index].commentsCount;
+                            var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
+                            console.log("t");
+                            _this.searchPostRepo.posts.push(post);
+                        }
+                    }
+                   
+                }
+            }
+
+            defer.resolve(_this.searchPostRepo);
+            }, function (error) {
+                defer.reject(error);
+            });
+
+        return defer.promise;
+    };
+
     ServerManager.prototype.getPosts = function (start, length) {
         var defer = Q.defer();
         var _this = this;
