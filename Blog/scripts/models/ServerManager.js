@@ -90,7 +90,7 @@ app.serverManager = (function() {
     ServerManager.prototype.getTopPosts = function () {
         var defer = Q.defer();
         var _this = this;
-        this.postsRepo.posts.length = 0;
+        this.topPostRepo.posts.length = 0;
 
         this._requester.get('classes/Post/')
             .then(function (data) {
@@ -141,6 +141,7 @@ app.serverManager = (function() {
                     '}';
                 var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount);
 
+                var commentNumber = 1;
                 _this._requester.get('classes/Comment?where=' + whereParameter)
                     .then(function(data) {
                     for (var comment in data.results) {
@@ -150,8 +151,10 @@ app.serverManager = (function() {
                         var date = new Date(data.results[comment].createdAt);
                         var dateCreated = ((date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear());
 
-                        var comment = new Comment(id, content, author, dateCreated, commentNumber);
-                        post.addComment(comment);
+
+                        var commentModel = new Comment(id, content, author, dateCreated, commentNumber);
+                        commentNumber++;
+                        post.addComment(commentModel);
                     }
 
                     defer.resolve(post);

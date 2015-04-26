@@ -30,12 +30,13 @@ manager.isValidAdmin().then(function(data) {
 });
 
 (function() {
-    var model = app.serverManager.load(app.requester.load('https://api.parse.com/1/'));
     app.model = app.serverManager.load(app.requester.load('https://api.parse.com/1/'));
+    
     //Михайлов вчера за това те питах дали е ок този модел да се закачи за app, защото
     //няма как да го достъпя от друг файл, освен през самито. Примерно ако искам да 
     //закача евент на логин бутона мога 
-    var controller = app.controller.load(model);
+    var controller = app.controller.load(app.model);
+    controller.loadInitialView();
 
     app.router = Sammy(function () {
         var selector = '#center';

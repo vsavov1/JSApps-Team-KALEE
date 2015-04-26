@@ -5,6 +5,18 @@ app.controller = (function() {
         this.model = model;
     }
 
+    Controller.prototype.loadInitialView = function () {
+        if (localStorage['logged-in']) {
+            $("#hiUserName").html('Hello, <span>' +
+                localStorage['username'] + '</span>');
+            $('#loginButton').html('<p>Logout</p>');
+            $('#registerButton').remove();
+        } else {
+            $('#loginButton').html('<p>Login</p>');
+            $('#hiUserName').text('');
+        }
+    }
+
     Controller.prototype.getLatestPostView = function (selector) {
         this.model.getPosts(1,6)
             .then(function(data){
@@ -16,15 +28,7 @@ app.controller = (function() {
     }
 
     Controller.prototype.getHomePage = function (selector) {
-        if (localStorage['logged-in']) {
-            $("#headerContainer").append($('<p id="hiUserName">Hello, <span>' + localStorage['username'] + '</span></p>'));
-            $('#loginButton').html('<p>Logout</p>');
-            $('#registerButton').remove();
-        } else {
-            $('#loginButton').html('<p>Login</p>');
-            $('#hiUserName').remove();
-        }
-
+        this.loadInitialView();
         this.model.getTopPosts()
             .then(function(data){
                 app.homeView.load(selector, data, "topPosts");
@@ -67,23 +71,15 @@ app.controller = (function() {
         } else {
             app.loginView.load(selector);
         }
-        
-		// Load login view from the view model
+
+        this.loadInitialView();
+        // Load login view from the view model
     };
 
      Controller.prototype.getRegisterPage = function (selector) {
         app.registerView.load(selector);
     };  // No register page for now
-
-    /* Controller.prototype.getStudentsPage = function (selector) {
-        this.model.getStudents()
-            .then(function (data) {
-                app.studentsView.load(selector, data);
-            }, function (error) {
-                console.log(error);
-            })
-    }; */ 
-    // Left it for a sample promise to see
+    
     Controller.prototype.getAdminPage = function (selector) {
         this.model.getPosts(0, 9)
             .then(function(data){
