@@ -94,26 +94,27 @@ app.serverManager = (function() {
 
         this._requester.get('classes/Post/')
             .then(function (data) {
-            var tempRepo = _.sortBy(data.results, function (post) {
-                return post.voteCount;
-            })
+                var tempRepo = _.sortBy(data.results, function(post) {
+                    return post.voteCount;
+                });
 
-            for (var index = tempRepo.length; index > tempRepo.length - 4; index--) {
-                var id = tempRepo[index - 1].objectId;
-                var title = tempRepo[index - 1].title;
-                var content = tempRepo[index - 1].content;
-                var author = tempRepo[index - 1].author;
-                var dateCreated = tempRepo[index - 1].createdAt;
-                var viewsCount = tempRepo[index - 1].viewsCount;
-                var voteCount = tempRepo[index - 1].voteCount;
-                var commentsCount = tempRepo[index - 1].commentsCount;
-                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
-                _this.topPostRepo.posts.push(post);
-            }
-            defer.resolve(_this.topPostRepo);
+                for (var index = tempRepo.length; index > tempRepo.length - 4; index--) {
+                    var id = tempRepo[index - 1].objectId;
+                    var title = tempRepo[index - 1].title;
+                    var content = tempRepo[index - 1].content;
+                    var author = tempRepo[index - 1].author;
+                    var dateCreated = tempRepo[index - 1].createdAt;
+                    var viewsCount = tempRepo[index - 1].viewsCount;
+                    var voteCount = tempRepo[index - 1].voteCount;
+                    var commentsCount = tempRepo[index - 1].commentsCount;
+                    var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
+                    _this.topPostRepo.posts.push(post);
+                }
+                defer.resolve(_this.topPostRepo);
             }, function (error) {
                 defer.reject(error);
             });
+
         return defer.promise;
     }
 
