@@ -88,7 +88,7 @@ app.serverManager = (function() {
                 });
 
             }, function(error) {
-                defer.reject(error);
+                defer.reject(console.log(error));
             });
         
         return defer.promise;
@@ -161,7 +161,7 @@ app.serverManager = (function() {
             });
 
 	    return defer.promise;
-	}
+	};
 
     /*
      * Creates a new Comment in the database for a given post (given by objectId) 

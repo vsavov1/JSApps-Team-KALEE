@@ -45,6 +45,42 @@ app.controller = (function() {
             })
     }; */ 
     // Left it for a sample promise to see
+    Controller.prototype.getAdminPage = function (selector) {
+        this.model.getPosts(0, 9)
+            .then(function(data){
+                app.adminView.load(selector, data);
+            }, function(error){
+                console.error(error);
+            });
+    };
+
+    Controller.prototype.updatePost = function (selector, id, title, content, author) {
+        this.model.editPost(id, title, content, author)
+            .then(function(data) {
+                app.postView.load(selector, data);
+            }, function(error) {
+                console.error(error);
+            });
+    };
+
+    Controller.prototype.adminDeletePost = function(selector, id) {
+        this.model.deletePost(id)
+            .then(function() {
+                this.model.getAdminPage(selector);
+            }, function(error) {
+                console.log(error);
+            });
+    };
+
+    Controller.prototype.getAdminEditPostPage = function (selector, id) {
+        this.model.getPost(id)
+            .then(function(data){
+                app.adminEditPostView.load(selector, data);
+
+            }, function(error){
+                console.log(error);
+            });
+    };
 
     return {
         load: function (model) {

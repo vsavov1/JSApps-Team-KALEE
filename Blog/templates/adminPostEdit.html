@@ -1,0 +1,23 @@
+<div>Author: <input type="text" value="{{author}}"></div>
+<div>Title: <input type="text" value="{{title}}"></div>
+<div>Content: <textarea>{{content}}</textarea></div>
+<div><a href="#/UpdatePost/{{id}}">Save changes</a></div>
+<br />
+<br />
+Comments:
+<hr />
+Name: <input type="text" id="name" /><br />
+Comment: <input type="text" id="comment" /><br />
+<button id="commentSend">Send</button>
+
+
+<br />
+<br />
+<div id="comments">
+    {{#comments}}
+    <div class="comment">
+        Author: {{author}}<br />
+        Comment: {{content}}<br />
+    </div><br />
+    {{/comments}}
+</div>
