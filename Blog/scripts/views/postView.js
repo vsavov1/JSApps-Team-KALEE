@@ -3,7 +3,6 @@ var app = app || {};
 app.postView = (function() {
     function PostView(selector, data) {
         $.get('templates/post.html', function(template) {
-            $('#leftSide').empty();
             var output = Mustache.render(template, data);
             $(selector).html(output);
         })

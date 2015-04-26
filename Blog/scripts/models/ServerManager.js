@@ -11,6 +11,12 @@ app.serverManager = (function() {
         this.postsRepo = {
             posts: []
         };
+        this.topPostRepo = {
+            posts: [ ]
+        }
+        this.mostViewPostRepo = {
+            posts: [ ]
+        }
     }
 
     /*
@@ -51,6 +57,66 @@ app.serverManager = (function() {
         return defer.promise;
     };
 
+    ServerManager.prototype.getMostViewedPosts = function () {
+        var defer = Q.defer();
+        var _this = this;
+        this.mostViewPostRepo.posts.length = 0;
+
+        this._requester.get('classes/Post/')
+            .then(function (data) {
+            var tempRepo = _.sortBy(data.results, function (post) {
+                return post.viewsCount;
+            })
+
+            for (var index = tempRepo.length; index > tempRepo.length - 3; index--) {
+                var id = tempRepo[index - 1].objectId;
+                var title = tempRepo[index - 1].title;
+                var content = tempRepo[index - 1].content;
+                var author = tempRepo[index - 1].author;
+                var dateCreated = tempRepo[index - 1].createdAt;
+                var viewsCount = tempRepo[index - 1].viewsCount;
+                var voteCount = tempRepo[index - 1].voteCount;
+                var commentsCount = tempRepo[index - 1].commentsCount;
+                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
+                _this.mostViewPostRepo.posts.push(post);
+            }
+            defer.resolve(_this.mostViewPostRepo);
+            }, function (error) {
+                defer.reject(error);
+            });
+        return defer.promise;
+    }
+
+    ServerManager.prototype.getTopPosts = function () {
+        var defer = Q.defer();
+        var _this = this;
+        this.postsRepo.posts.length = 0;
+
+        this._requester.get('classes/Post/')
+            .then(function (data) {
+            var tempRepo = _.sortBy(data.results, function (post) {
+                return post.voteCount;
+            })
+
+            for (var index = tempRepo.length; index > tempRepo.length - 4; index--) {
+                var id = tempRepo[index - 1].objectId;
+                var title = tempRepo[index - 1].title;
+                var content = tempRepo[index - 1].content;
+                var author = tempRepo[index - 1].author;
+                var dateCreated = tempRepo[index - 1].createdAt;
+                var viewsCount = tempRepo[index - 1].viewsCount;
+                var voteCount = tempRepo[index - 1].voteCount;
+                var commentsCount = tempRepo[index - 1].commentsCount;
+                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
+                _this.topPostRepo.posts.push(post);
+            }
+            defer.resolve(_this.topPostRepo);
+            }, function (error) {
+                defer.reject(error);
+            });
+        return defer.promise;
+    }
+
     /*
      * Returns a Post object containing an array of objects of type Comment.
      */
@@ -66,11 +132,13 @@ app.serverManager = (function() {
                 var content = data.content;
                 var author = data.author;
                 var dateCreated = data.createdAt;
+                var viewsCount = data.viewsCount;
+                var voteCount = data.voteCount;
                 var whereParameter = '{' +
                     '"post":' +
                         '{"__type":"Pointer","className":"Post","objectId":"' + id + '"}' +
                     '}';
-                var post = new Post(id, title, content, author, dateCreated);
+                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount);
 
                 _this._requester.get('classes/Comment?where=' + whereParameter)
                     .then(function(data) {
@@ -184,7 +252,7 @@ app.serverManager = (function() {
                 defer.resolve(data);
             }, function (error) {
                defer.reject(error);
-            });;
+            });
 
         return defer.promise;
     }
@@ -215,7 +283,8 @@ app.serverManager = (function() {
         this._requester.get('login?username=' + username + '&password=' + password)
             .then(function(data) {
                 localStorage["logged-in"] = data.sessionToken;
-                defer.resolve(data);
+				localStorage["username"] = data.username;
+				defer.resolve(data);
         }, function(error) {
             defer.reject(error);
         });
@@ -230,8 +299,10 @@ app.serverManager = (function() {
     ServerManager.prototype.logout = function() {
         var defer = Q.defer();
         this._requester.post('logout').then(function(data) {
-            delete localStorage['logged-in'];
-            defer.resolve(data);
+            delete localStorage['logged-in']; 
+			delete localStorage['username'];
+			$("#loginButton").before($('<a href="#/Register" id="registerButton"><p>Become a member</p></a>'));
+			defer.resolve(data);
         }, function(error) {
             defer.reject(error);
         });
@@ -285,7 +356,7 @@ app.serverManager = (function() {
      */
     ServerManager.prototype.currentUserInfo = function() {
         var defer = Q.defer();
-        this._requester.get('sessions/me')
+        this._requester.get('users/me')
             .then(function(data) {
                 defer.resolve(data);
             }, function(error) {
@@ -312,6 +383,28 @@ app.serverManager = (function() {
         var _this = this;
         return identifyRole(_this, this._userRoleId);
     }
+
+    ServerManager.prototype.vote = function(id, voteType) {
+        var defer = Q.defer();
+        var data = {
+            id : id,
+            voteType : voteType,
+            user : localStorage.username
+        };
+
+        this._requester.post('functions/vote', data)
+            .then(function(successData){
+                defer.resolve(successData);
+            }, function(error){
+                defer.reject(error);
+            });
+
+        return defer.promise;
+    };
+
+    ServerManager.prototype.cloudTest = function() {
+
+    };
 
     function identifyRole(_this, roleId) {
         var defer = Q.defer();

@@ -70,7 +70,7 @@ footer {
   height: 83px;
   background-color: #4e4e4e;
   left: 0px;
-  margin-top: 250px;
+  margin-top: 30px;
 }
 #headerContainer {
   width: 1000px;
@@ -81,6 +81,7 @@ footer {
   width: 153px;
   height: 57px;
   margin-top: 15px;
+  margin-right: 5px;
   background-image: url("../img/logo.png");
   float: left;
 }
@@ -134,10 +135,11 @@ footer {
   color: #f96c65;
 }
 #loginButton p {
-  margin-left: 25px;
+  margin-left: 20px;
   margin-top: 8px;
   font-size: 18px;
 }
+
 #dropDownMenu {
   display:none;
   width: 1000px;
@@ -189,7 +191,18 @@ footer {
   color: #f96c65;
   font-size: 25px;
 }
+#hiUserName {
+  float: right;
+  /*width: 100px;*/
+  height: 83px;
+  margin-top: 32px;
 
+}
+#hiUserName span{
+  color: #f96c65;
+  font-weight: bold;
+  font-size: 20px;
+}
 #register h3, #loginPage h3{
   width: 290px;
   margin: auto;
@@ -260,23 +273,28 @@ footer {
 .largePost{
   margin-top: 10px;
   margin-bottom: 20px;
-  width: 300px;
-  height: 315px;
+  width: 350px;
+  height: 325px;
   float: left;
 }
 .largePost h3 {
   height: 45px;
- 
 }
 .largePost h3 a{
   margin-top: 5px;
   font-size: 20px;
-  height: 45px;
+  height: 43px;
   color: #f96c65;
   text-decoration: none;
+  display: block; 
+  display: -webkit-box;
+  max-width: 340px;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-#topPost {
+#topPost, #mostViewedPosts, #newestPost {
   margin-top: 10px;
   font-size: 20px;
   color: #f96c65;
@@ -343,4 +361,156 @@ footer {
   color: #a6a6a6;
   float: left;
   margin-left: 8px;
+}
+hr {
+  width: 700px;
+  height: 2px;
+  background-color: #a6a6a6 ;
+  border: none;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  float:left;
+}
+
+.mediumPost {
+  width: 700px;
+  height: 160px;
+  float: left;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.mediumPost img{
+  float: left;
+}
+
+.mediumPostInfo {
+  width: 195px;
+  height: 35px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  margin-top: 8px;
+  float: left;
+  margin-left: 5px;
+}
+.mediumPost {
+  margin-left: 5px;
+}
+.mediumPost h3 {
+  width: 481px;
+  margin-left: 5px;
+  float: left;
+ 
+}
+.mediumPost h3 a{
+  font-size: 20px;
+  height: 45px;
+  color: #f96c65;
+  text-decoration: none;
+  width: 481px;
+  display: block; 
+  display: -webkit-box;
+  max-width: 480px;
+  height: 40px; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mediumPostContent{
+  width: 491px;
+  height: 68px;
+  float: left;
+  margin-left: 5px;
+}
+.mediumPostContent p {
+  display: block; 
+  display: -webkit-box;
+  max-width: 480px;
+  height: 64px; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.readMore {
+  width: 110px;
+  height: 37px;
+  background-color: #f96c65;
+  float: right;
+  margin-top: 5px;
+  border-radius: 6px;
+  margin-right: 20px;
+  text-decoration: none;
+  color: #fff;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+}
+.readMore:hover {
+  background-color: #de5959;
+}
+.readMore a {
+  margin-left: 14px;
+  margin-top: 9px;
+  float: left;
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+}
+.smallPost {
+  width: 300px;
+  height: 66px;
+  float: left;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.smallPost img {
+  float: left;
+  margin-right: 5px;
+}
+
+.smallPost h3 a{
+  font-size: 15px;
+  color: #f96c65;
+  text-decoration: none;
+  width: 215px;
+  display: block; 
+  display: -webkit-box;
+  height: 32px; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: left;
+}
+.smallPostDate {
+  color: #4e4e4e;
+  font-size: 15px;
+  float: right;
+  margin-top: 13px;
+  height: 15px;
+}
+.smallPostAuthor {
+  font-size: 15px;
+  color: #68d2d1;
+  float: left;
+  margin-top: 13px;
+  height: 15px;
+}
+.smallPostHr {
+  width: 300px;
+  height: 2px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  background-color: #e5e5e5;
+  float: right;
+}
+#newestPost{
+  margin-bottom: 5px;
+}
+.smallPostHr {
+  width: 300px;
+  height: 1px;
+  border: none;
+  background-color: #e4e4e4;
+  margin-top: 8px;
 }

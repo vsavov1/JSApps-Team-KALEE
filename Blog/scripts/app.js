@@ -43,7 +43,7 @@ manager.isValidAdmin().then(function(data) {
         var rightBox = '#rightSide';
 
         this.get('#/', function () {
-            controller.getAdminPage(leftBox);
+            controller.getHomePage(leftBox);
             // Controller - Get homepage
 
             // Add ways to sort posts by get parameter
@@ -62,24 +62,6 @@ manager.isValidAdmin().then(function(data) {
             var id = data['params'].id;
             controller.getSinglePostPage(selector, id);
 
-        });
-
-        this.get('#/EditPost/:id', function(data) {
-            var id = data['params'].id;
-            controller.getAdminEditPostPage(selector, id);
-        });
-
-        this.get('#/DeletePost/:id', function(data) {
-            var id = data['params'].id;
-            controller.adminDeletePost(selector, id);
-        });
-
-        this.get('/UpdatePost/:id', function(data) {
-            var id = data['params'].id;
-            var title = data['params'].title;
-            var content = data['params'].title;
-            var author = data['params'].author;
-            controller.updatePost(selector, id,title, content, author);
         });
 
         this.get('#/Create', function () {

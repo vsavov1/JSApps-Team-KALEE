@@ -18,8 +18,3 @@ $(window).bind('mousewheel', function(event) {
     $('#dropDownMenu').slideUp();
     }
 });
-
-function testLogin (argument) {
-  // app.serverManager.login();
-  app.model.login();
-}

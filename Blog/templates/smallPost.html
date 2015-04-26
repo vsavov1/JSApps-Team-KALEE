@@ -3,11 +3,8 @@
 		<!-- <img src="{{imgSoruce}}" alt=""> -->
 		<div><a href="#/Post/{{id}}"><img src="./img/test3.jpg" alt=""></a></div>
 		<h3><a href="#/Post/{{id}}">{{title}}</a></h3>
-		<div class="smallPostInfo">
-			<div class="viewsCount"><img src="./img/viewIcon.png" alt=""><h4>{{viewsCount}}</h4></div>
-			<div class="content"><h4>{{author}}</h4></div>
-			<div class="commentsCount"><img src="./img/commentIcon.png" alt=""><h4>{{commentsCount}}<h4></div>
-			<div class="voteCount"><img src="./img/likeIcon.png" alt=""><h4>{{voteCount}}</h4></div>
-		</div>
+		<div class="smallPostAuthor">{{author}}<h4></div>
+		<div class="smallPostDate">{{dateCreated}}<h4></div>
+		<hr class="smallPostHr"></hr>
 	</div>
 {{/posts}}

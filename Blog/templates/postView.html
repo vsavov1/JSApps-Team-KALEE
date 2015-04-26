@@ -1,0 +1,29 @@
+<div>Views: {{viewsCount}}</div>
+<div>Rate: <span id="rateCount">{{voteCount}}</span></div>
+<a href="javascript: void(0);" id="voteUp">Vote Up</a>
+<a href="javascript: void(0);" id="voteDown">Vote Down</a>
+<br />
+<br />
+<div>Author: {{author}}</div>
+<div>Title: {{title}}</div>
+<div>Content: {{content}}</div>
+<br />
+<br />
+<div>Comments:</div>
+
+<br />
+<br />
+<div id="comments">
+    {{#comments}}
+    <div class="comment">
+        Author: {{author}}<br/>
+        Comment: {{content}}<br/>
+    </div><br/>
+    {{/comments}}
+</div>
+<br/>
+{{#logged-in}}
+Comment: <br/>
+<textarea id="commentContent" rows="4" cols="30"></textarea>
+<button id="commentSend">Send</button>
+{{/logged-in}}
