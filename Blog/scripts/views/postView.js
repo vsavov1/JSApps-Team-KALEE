@@ -2,7 +2,7 @@ var app = app || {};
 
 app.postView = (function() {
     function PostView(selector, data) {
-        $.get('templates/post.html', function(template) {
+        $.get('templates/postView.html', function(template) {
             $("#leftSide").empty();
             $('#rightSide').empty();
             $('#center').empty();

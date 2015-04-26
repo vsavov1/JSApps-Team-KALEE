@@ -42,6 +42,7 @@ app.controller = (function() {
 
     Controller.prototype.getSinglePostPage = function (selector, id) {
         $('#center').html('');
+        var _this = this;
         this.model.getPost(id)
             .then(function (data) {
                 if (localStorage['logged-in']) {
@@ -49,6 +50,7 @@ app.controller = (function() {
                 }
                 app.postView.load(selector, data);
 
+                _this.model.countView(id);
             }, function(error) {
                 poppy.pop('error', 'Error', 'There was an error loading this post. ' +
                     'Please try again later.');

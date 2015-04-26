@@ -162,7 +162,7 @@ app.serverManager = (function() {
         
         return defer.promise;
 
-    } 
+    };
 
     /*
      * Creates a new post in the database with the given title, author and content
@@ -403,8 +403,18 @@ app.serverManager = (function() {
         return defer.promise;
     };
 
-    ServerManager.prototype.cloudTest = function() {
+    ServerManager.prototype.countView = function(id) {
+        var defer = Q.defer();
+        var data = {
+            id: id,
+            user: localStorage.username
+        };
+        this._requester.post('functions/makeView', data)
+            .then(function(data) {
+                console.log("asd");
+            });
 
+        return defer.promise;
     };
 
     function identifyRole(_this, roleId) {
