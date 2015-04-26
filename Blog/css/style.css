@@ -514,3 +514,187 @@ hr {
   background-color: #e4e4e4;
   margin-top: 8px;
 }
+#postViewTitle {
+  font-size: 20px;
+  color: #f96c65;
+  text-decoration: none;
+  width: 1000px;
+  display: block; 
+  display: -webkit-box;
+  height: 40px; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: left;
+  margin-top: 20px;
+  font-weight:  bold
+}
+#postView img {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  float: left;
+}
+#postViewInfo {
+  width: 1000px;
+  height: 60px;
+  margin-bottom: 15px;
+  float: left;
+  /*background-color: gray;*/
+}
+#postViewAuthor {
+  height: 60px;
+  width: 150px;
+  float: left;
+}
+#postViewAuthor img {
+  float: left;
+
+}
+#postViewAuthor p {
+  width: 110px;
+  font-size: 20px;
+  color: #68d2d1;
+  margin-top: 20px;
+  margin-left: 10px;
+  float: left;
+}
+#postViewViews {
+  width: 110px;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-left: 10px;
+  float: left;
+}
+#rateCount{
+  color: #f96c65;
+}
+#postViewViews {
+  width: 110px;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-left: 10px;
+  float: right;
+}
+#postViewVoteCount {
+  width: 110px;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+  float: right
+}
+#postViewViews span {
+  color: #f96c65;
+}
+#voteDown, #voteUp{
+  float: right;
+  height: 60px;
+  width: 60px;
+}
+#voteDown img, #voteUp img { 
+  position: relative;
+  height: 60px;
+  margin-bottom: 20px;  
+  top: -15px;
+}
+#postViewContent {
+  font-size: 16px;
+  line-height: 1.6;
+  width: 1000px;
+  height: auto;
+  float: left;
+}
+#postViewComentsTitle {
+  width: 1000px;
+  height: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  float: left;
+  font-size: 20px;
+  color: #f96c65;
+}
+.comment {
+  width: 1000px;
+  height: auto;
+  float: left;
+  margin-bottom: 15px;
+}
+#postViewCommentNumber {
+  width: 90px;
+  height: 90px;
+  background-color: #e5e5e5;
+  display: table; 
+}
+#postViewCommentNumber p {
+  text-align:center; 
+  vertical-align: middle;
+  display: table-cell;
+  font-size: 30px;
+  font-weight: bold;
+  color: #f96c65;   
+}
+#postViewCommentAuthor {
+  float: left;
+  font-size: 15px;
+  color: #68d2d1;
+  margin-top: 10px;
+  height: 20px;
+  width: 80px;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#postViewCommentDate {
+  float: left;
+  font-size: 15px;
+  color: red;
+  margin-top: 10px;
+  height: 20px;
+  width: 80px;
+}
+#postViewCommentContent {
+  width: 900px;
+  float: right;
+  height: auto;
+  min-height: 150px;
+}
+#postViewCommentContent p {
+  max-width: 900px;
+}
+textarea#commentContent{
+  max-width: 1000px;
+  min-width: 1000px;
+  min-height: 120px;
+  border: 1px solid #e5e5e5;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+}
+#writeComment {
+  color: red;   
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+#commentSend {
+  width: 195px;
+  height: 37px;
+  background-color: #f96c65;
+  float: right;
+  margin-top: 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+}
+#commentSend:hover {
+  background-color: #de5959;
+}
+#commentSend p {
+  margin-left: 25px;
+  margin-top: 8px;
+  font-size: 18px;
+}
