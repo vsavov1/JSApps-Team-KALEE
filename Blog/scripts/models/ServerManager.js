@@ -132,11 +132,13 @@ app.serverManager = (function() {
                 var content = data.content;
                 var author = data.author;
                 var dateCreated = data.createdAt;
+                var viewsCount = data.viewsCount;
+                var voteCount = data.voteCount;
                 var whereParameter = '{' +
                     '"post":' +
                         '{"__type":"Pointer","className":"Post","objectId":"' + id + '"}' +
                     '}';
-                var post = new Post(id, title, content, author, dateCreated);
+                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount);
 
                 _this._requester.get('classes/Comment?where=' + whereParameter)
                     .then(function(data) {
@@ -250,7 +252,7 @@ app.serverManager = (function() {
                 defer.resolve(data);
             }, function (error) {
                defer.reject(error);
-            });;
+            });
 
         return defer.promise;
     }
@@ -281,8 +283,8 @@ app.serverManager = (function() {
         this._requester.get('login?username=' + username + '&password=' + password)
             .then(function(data) {
                 localStorage["logged-in"] = data.sessionToken;
-                localStorage["username"] = username;
-                defer.resolve(data);
+				localStorage["username"] = data.username;
+				defer.resolve(data);
         }, function(error) {
             defer.reject(error);
         });
@@ -297,9 +299,10 @@ app.serverManager = (function() {
     ServerManager.prototype.logout = function() {
         var defer = Q.defer();
         this._requester.post('logout').then(function(data) {
-            delete localStorage['logged-in'];
-            $("#loginButton").before($('<a href="#/Register" id="registerButton"><p>Become a member</p></a>'));
-            defer.resolve(data);
+            delete localStorage['logged-in']; 
+			delete localStorage['username'];
+			$("#loginButton").before($('<a href="#/Register" id="registerButton"><p>Become a member</p></a>'));
+			defer.resolve(data);
         }, function(error) {
             defer.reject(error);
         });
@@ -380,6 +383,28 @@ app.serverManager = (function() {
         var _this = this;
         return identifyRole(_this, this._userRoleId);
     }
+
+    ServerManager.prototype.vote = function(id, voteType) {
+        var defer = Q.defer();
+        var data = {
+            id : id,
+            voteType : voteType,
+            user : localStorage.username
+        };
+
+        this._requester.post('functions/vote', data)
+            .then(function(successData){
+                defer.resolve(successData);
+            }, function(error){
+                defer.reject(error);
+            });
+
+        return defer.promise;
+    };
+
+    ServerManager.prototype.cloudTest = function() {
+
+    };
 
     function identifyRole(_this, roleId) {
         var defer = Q.defer();
