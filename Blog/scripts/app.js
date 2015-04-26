@@ -57,6 +57,24 @@ manager.isValidAdmin().then(function(data) {
             controller.getRegisterPage(selector);
         });
 
+        this.get('#/EditPost/:id', function(data) {
+            var id = data['params'].id;
+            controller.getAdminEditPostPage(selector, id);
+        });
+
+        this.get('#/DeletePost/:id', function(data) {
+            var id = data['params'].id;
+            controller.adminDeletePost(selector, id);
+        });
+
+        this.get('/UpdatePost/:id', function(data) {
+            var id = data['params'].id;
+            var title = data['params'].title;
+            var content = data['params'].title;
+            var author = data['params'].author;
+            controller.updatePost(selector, id,title, content, author);
+        });
+
         this.get('#/Post/:id', function (data) {
             // Controller - Get Post page
             var id = data['params'].id;
