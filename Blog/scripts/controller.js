@@ -12,17 +12,9 @@ app.controller = (function() {
             $('#loginButton').html('<p>Login</p>');
         }
 
-        // this request will be for TOP POSTS
-        // this.model.getPosts(1, 5)
-        //     .then(function(data){
-        //         app.homeView.load(selector, data);
-        //     }, function(error){
-        //         console.error(error);
-        //     });
-
-      this.model.getTopPosts()
-        .then(function(data){
-            app.homeView.load(selector, data, true);
+          this.model.getTopPosts()
+            .then(function(data){
+                app.homeView.load(selector, data, "topPosts");
         }, function(error){
             console.error(error);
         })
@@ -30,18 +22,18 @@ app.controller = (function() {
         // this request will be for TRENDING POSTS
         this.model.getPosts(1, 5)
             .then(function(data){
-                app.homeView.load(selector, data, false);
+                app.homeView.load(selector, data, "newPosts");
             }, function(error){
                 console.error(error);
             });
 
         // this request will be for MOST VOTED POSTS ?
-        // this.model.getPosts(1, 5)
-        //     .then(function(data){
-        //         app.homeView.load(selector, data, false);
-        //     }, function(error){
-        //         console.error(error);
-        //     });
+        this.model.getMostViewedPosts()
+            .then(function(data){
+                app.homeView.load(selector, data, "mostViewedPosts");
+            }, function(error){
+                console.error(error);
+            });
     };
 
     Controller.prototype.getSinglePostPage = function (selector, id) {

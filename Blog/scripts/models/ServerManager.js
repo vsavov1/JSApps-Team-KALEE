@@ -14,6 +14,9 @@ app.serverManager = (function() {
         this.topPostRepo = {
             posts: [ ]
         }
+        this.mostViewPostRepo = {
+            posts: [ ]
+        }
     }
 
     /*
@@ -54,6 +57,36 @@ app.serverManager = (function() {
         return defer.promise;
     };
 
+    ServerManager.prototype.getMostViewedPosts = function () {
+        var defer = Q.defer();
+        var _this = this;
+        this.mostViewPostRepo.posts.length = 0;
+
+        this._requester.get('classes/Post/')
+            .then(function (data) {
+            var tempRepo = _.sortBy(data.results, function (post) {
+                return post.viewsCount;
+            })
+
+            for (var index = tempRepo.length; index > tempRepo.length - 3; index--) {
+                var id = tempRepo[index - 1].objectId;
+                var title = tempRepo[index - 1].title;
+                var content = tempRepo[index - 1].content;
+                var author = tempRepo[index - 1].author;
+                var dateCreated = tempRepo[index - 1].createdAt;
+                var viewsCount = tempRepo[index - 1].viewsCount;
+                var voteCount = tempRepo[index - 1].voteCount;
+                var commentsCount = tempRepo[index - 1].commentsCount;
+                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
+                _this.mostViewPostRepo.posts.push(post);
+            }
+            defer.resolve(_this.mostViewPostRepo);
+            }, function (error) {
+                defer.reject(error);
+            });
+        return defer.promise;
+    }
+
     ServerManager.prototype.getTopPosts = function () {
         var defer = Q.defer();
         var _this = this;
@@ -76,6 +109,7 @@ app.serverManager = (function() {
                 var commentsCount = tempRepo[index - 1].commentsCount;
                 var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
                 _this.topPostRepo.posts.push(post);
+                console.log(post);
             }
             defer.resolve(_this.topPostRepo);
             }, function (error) {

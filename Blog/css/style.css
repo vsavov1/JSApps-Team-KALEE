@@ -270,12 +270,18 @@ footer {
 .largePost h3 a{
   margin-top: 5px;
   font-size: 20px;
-  height: 45px;
+  height: 43px;
   color: #f96c65;
   text-decoration: none;
+  display: block; 
+  display: -webkit-box;
+  max-width: 340px;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-#topPost {
+#topPost, #mostViewedPosts {
   margin-top: 10px;
   font-size: 20px;
   color: #f96c65;
@@ -351,4 +357,65 @@ hr {
   margin-top: 15px;
   margin-bottom: 25px;
   float:left;
+}
+
+.mediumPost {
+  width: 700px;
+  height: 160px;
+  float: left;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.mediumPost img{
+  float: left;
+}
+
+.mediumPostInfo {
+  width: 195px;
+  height: 35px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  margin-top: 8px;
+  float: left;
+  margin-left: 5px;
+}
+.mediumPost {
+  margin-left: 5px;
+}
+.mediumPost h3 {
+  width: 481px;
+  margin-left: 5px;
+  float: left;
+ 
+}
+.mediumPost h3 a{
+  font-size: 20px;
+  height: 45px;
+  color: #f96c65;
+  text-decoration: none;
+  width: 481px;
+  display: block; 
+  display: -webkit-box;
+  max-width: 480px;
+  height: 40px; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mediumPostContent{
+  width: 491px;
+  height: 68px;
+  float: left;
+  margin-left: 5px;
+}
+
+
+.mediumPostContent p {
+  display: block; 
+  display: -webkit-box;
+  max-width: 480px;
+  height: 64px; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
