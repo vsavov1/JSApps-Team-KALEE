@@ -294,7 +294,7 @@ footer {
   text-overflow: ellipsis;
 }
 
-#topPost, #mostViewedPosts {
+#topPost, #mostViewedPosts, #newestPost {
   margin-top: 10px;
   font-size: 20px;
   color: #f96c65;
@@ -456,4 +456,61 @@ hr {
   font-size: 18px;
   color: #fff;
   text-decoration: none;
+}
+.smallPost {
+  width: 300px;
+  height: 66px;
+  float: left;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.smallPost img {
+  float: left;
+  margin-right: 5px;
+}
+
+.smallPost h3 a{
+  font-size: 15px;
+  color: #f96c65;
+  text-decoration: none;
+  width: 215px;
+  display: block; 
+  display: -webkit-box;
+  height: 32px; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: left;
+}
+.smallPostDate {
+  color: #4e4e4e;
+  font-size: 15px;
+  float: right;
+  margin-top: 13px;
+  height: 15px;
+}
+.smallPostAuthor {
+  font-size: 15px;
+  color: #68d2d1;
+  float: left;
+  margin-top: 13px;
+  height: 15px;
+}
+.smallPostHr {
+  width: 300px;
+  height: 2px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  background-color: #e5e5e5;
+  float: right;
+}
+#newestPost{
+  margin-bottom: 5px;
+}
+.smallPostHr {
+  width: 300px;
+  height: 1px;
+  border: none;
+  background-color: #e4e4e4;
+  margin-top: 8px;
 }

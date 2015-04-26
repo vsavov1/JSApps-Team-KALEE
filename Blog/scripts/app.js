@@ -37,9 +37,9 @@ var app = app || {};
         var rightBox = '#rightSide';
 
         this.get('#/', function () {
-            controller.getHomePage(leftBox);
+            controller.getHomePage(leftBox); // TODO views for TOP/TRENDING post
+            controller.getLatestPostView(rightBox);
             // Controller - Get homepage
-
             // Add ways to sort posts by get parameter
         });
 

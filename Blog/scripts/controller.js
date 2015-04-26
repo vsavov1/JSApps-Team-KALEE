@@ -5,6 +5,16 @@ app.controller = (function() {
         this.model = model;
     }
 
+    Controller.prototype.getLatestPostView = function (selector) {
+        this.model.getPosts(1,6)
+            .then(function(data){
+                app.latestPostView.load(selector, data, "topPosts");
+        }, function(error){
+            console.error(error);
+        })
+
+    }
+
     Controller.prototype.getHomePage = function (selector) {
         if (localStorage['logged-in']) {
             $("#headerContainer").append($('<p id="hiUserName">Hello, <span>' + localStorage['username'] + '</span></p>'));
@@ -22,15 +32,6 @@ app.controller = (function() {
             console.error(error);
         })
        
-        // this request will be for TRENDING POSTS
-        this.model.getPosts(1, 5)
-            .then(function(data){
-                app.homeView.load(selector, data, "newPosts");
-            }, function(error){
-                console.error(error);
-            });
-
-        // this request will be for MOST VOTED POSTS ?
         this.model.getMostViewedPosts()
             .then(function(data){
                 app.homeView.load(selector, data, "mostViewedPosts");
