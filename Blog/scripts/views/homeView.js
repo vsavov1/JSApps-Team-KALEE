@@ -15,15 +15,15 @@ app.homeView = (function() {
             });
         } 
 
-        if (type == "newPosts") {
-            $("#leftSide").append($("<hr></hr>"));
+        // if (type == "newPosts") {
+        //     $("#leftSide").append($("<hr></hr>"));
 
-            $("#leftSide").append($("<h1 id='topPost'>Newest posts</h1>"));
-            $.get('templates/largePost.html', function(template) {
-                var output = Mustache.render(template, data);
-                $(selector).append(output);
-            });
-        }
+        //     $("#leftSide").append($("<h1 id='topPost'>Newest posts</h1>"));
+        //     $.get('templates/largePost.html', function(template) {
+        //         var output = Mustache.render(template, data);
+        //         $(selector).append(output);
+        //     });
+        // }
 
         if (type == "mostViewedPosts") {
             $("#leftSide").append($("<hr></hr>"));

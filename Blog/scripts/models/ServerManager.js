@@ -109,7 +109,6 @@ app.serverManager = (function() {
                 var commentsCount = tempRepo[index - 1].commentsCount;
                 var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
                 _this.topPostRepo.posts.push(post);
-                console.log(post);
             }
             defer.resolve(_this.topPostRepo);
             }, function (error) {
@@ -282,6 +281,7 @@ app.serverManager = (function() {
         this._requester.get('login?username=' + username + '&password=' + password)
             .then(function(data) {
                 localStorage["logged-in"] = data.sessionToken;
+                localStorage["username"] = username;
                 defer.resolve(data);
         }, function(error) {
             defer.reject(error);
@@ -298,6 +298,7 @@ app.serverManager = (function() {
         var defer = Q.defer();
         this._requester.post('logout').then(function(data) {
             delete localStorage['logged-in'];
+            $("#loginButton").before($('<a href="#/Register" id="registerButton"><p>Become a member</p></a>'));
             defer.resolve(data);
         }, function(error) {
             defer.reject(error);

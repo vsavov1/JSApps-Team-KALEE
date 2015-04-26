@@ -81,6 +81,7 @@ footer {
   width: 153px;
   height: 57px;
   margin-top: 15px;
+  margin-right: 5px;
   background-image: url("../img/logo.png");
   float: left;
 }
@@ -138,6 +139,7 @@ footer {
   margin-top: 8px;
   font-size: 18px;
 }
+
 #dropDownMenu {
   display:none;
   width: 1000px;
@@ -189,7 +191,18 @@ footer {
   color: #f96c65;
   font-size: 25px;
 }
+#hiUserName {
+  float: right;
+  /*width: 100px;*/
+  height: 83px;
+  margin-top: 32px;
 
+}
+#hiUserName span{
+  color: #f96c65;
+  font-weight: bold;
+  font-size: 20px;
+}
 #register h3, #loginPage h3{
   width: 290px;
   margin: auto;
@@ -261,7 +274,7 @@ footer {
   margin-top: 10px;
   margin-bottom: 20px;
   width: 350px;
-  height: 315px;
+  height: 325px;
   float: left;
 }
 .largePost h3 {
@@ -408,8 +421,6 @@ hr {
   float: left;
   margin-left: 5px;
 }
-
-
 .mediumPostContent p {
   display: block; 
   display: -webkit-box;
@@ -418,4 +429,31 @@ hr {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.readMore {
+  width: 110px;
+  height: 37px;
+  background-color: #f96c65;
+  float: right;
+  margin-top: 5px;
+  border-radius: 6px;
+  margin-right: 20px;
+  text-decoration: none;
+  color: #fff;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+}
+.readMore:hover {
+  background-color: #de5959;
+}
+.readMore a {
+  margin-left: 14px;
+  margin-top: 9px;
+  float: left;
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
 }
