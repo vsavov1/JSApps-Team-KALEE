@@ -45,6 +45,7 @@ manager.isValidAdmin().then(function(data) {
 
         this.get('#/', function () {
             controller.getHomePage(leftBox);
+            controller.getNewestPostView(rightBox);
             // Controller - Get homepage
 
             // Add ways to sort posts by get parameter

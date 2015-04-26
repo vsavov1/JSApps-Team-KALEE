@@ -17,10 +17,12 @@ app.controller = (function() {
         }
     }
 
-    Controller.prototype.getLatestPostView = function (selector) {
+    Controller.prototype.getNewestPostView = function (selector) {
+
         this.model.getPosts(1,6)
             .then(function(data){
-                app.latestPostView.load(selector, data, "topPosts");
+
+                app.newestPostView.load(selector, data, "topPosts");
         }, function(error){
             console.error(error);
         })
