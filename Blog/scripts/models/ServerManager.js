@@ -43,11 +43,15 @@ app.serverManager = (function() {
                     break;
                 }
 
-                var postWords = data.results[index].content.split(' ');
-                for(var i = 0; i < postWords.length; i++){
+                if(!data.results[index].tags){
+                    continue;
+                }
+
+                var postTags = data.results[index].tags;
+                for(var i = 0; i < postTags.length; i++){
                     for( var z = 0; z < keyWordsRepo.length; z++){
                         var isContain = false;
-                        if (postWords[i].toLowerCase() === keyWordsRepo[z].toLowerCase()) {
+                        if (postTags[i].toLowerCase() === keyWordsRepo[z].toLowerCase()) {
                            isContain = true;
                         }
 
@@ -60,8 +64,10 @@ app.serverManager = (function() {
                             var viewsCount = data.results[index].viewsCount;
                             var voteCount = data.results[index].voteCount;
                             var commentsCount = data.results[index].commentsCount;
-                            var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
-                            console.log("t");
+                            var commentsCount = data.results[index].commentsCount;
+                            var tags = data.results[index].tags;
+                            var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, "comments", "", tags);
+
                             _this.searchPostRepo.posts.push(post);
                         }
                     }
