@@ -8,10 +8,10 @@ app.homeView = (function() {
             $('#rightSide').empty();
             $('#center').empty();
 
-            $("#leftSide").html($("<h1 id='topPost'>Top posts</h1>"));
+            $("#leftSide").append($("<h1 id='topPost'>Top posts</h1>"));
             $.get('templates/largePost.html', function(template) {
                 var output = Mustache.render(template, data);
-                $(selector).html(output);
+                $(selector).append(output);
 
             });
         } 
