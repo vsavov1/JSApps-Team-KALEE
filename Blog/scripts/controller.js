@@ -114,6 +114,15 @@ app.controller = (function() {
             });
     };
 
+    Controller.prototype.loadComment =  function (id) {
+        this.model.getComment(id)
+            .then(function(data) {
+                app.commentView.load('#comments', data);
+            }, function(error) {
+                console.log(error);
+            })
+    };
+
     Controller.prototype.adminDeleteComment = function (selector, id) {
         this.model.deleteComment(id)
             .then(function (data) {
@@ -139,6 +148,8 @@ app.controller = (function() {
     Controller.prototype.getAdminCreatePostPage = function(selector) {
         app.adminCreatePostPage.load(selector);
     };
+
+
 
     return {
         load: function (model) {

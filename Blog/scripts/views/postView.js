@@ -42,7 +42,7 @@ app.postView = (function() {
                         app.model.postComment(splitted[splitted.length - 1], successData.username, content)
                             .then(function (data) {
                                 var splitted = window.location.href.split('#');
-                                window.location.replace(splitted[0] + '#/');
+                                window.location.replace(splitted[0] + '#' + splitted[1]);
                                 poppy.pop('success', 'Comment posted successfully!',
                                                 'Your comment has been posted successfully');
                             }, function (error) {
