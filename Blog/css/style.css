@@ -979,3 +979,44 @@ input:focus ~ #mock-cursor {
   float: left;
 }
 
+
+#adminPageButton {
+  width: 195px;
+  height: 37px;
+  background-color: #f96c65;
+  float: right;
+  margin-top: 25px;
+  border-radius: 6px;
+  margin-right: 20px;
+  text-decoration: none;
+  color: #fff;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+  display: none;
+}
+#adminPageButton:hover {
+  background-color: #de5959;
+}
+#adminPageButton p {
+  margin-left: 25px;
+  margin-top: 8px;
+  font-size: 18px;
+} {
+  width: 195px;
+  height: 37px;
+  background-color: #f96c65;
+  float: right;
+  margin-top: 25px;
+  border-radius: 6px;
+  margin-right: 20px;
+  text-decoration: none;
+  color: #fff;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+}
