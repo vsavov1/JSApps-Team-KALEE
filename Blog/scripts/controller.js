@@ -77,6 +77,16 @@ app.controller = (function() {
         // Load login view from the view model
     };
 
+    Controller.prototype.getTagsView = function (selector) {
+        this.loadInitialView();
+        this.model.getMostUsedTags(10)
+            .then(function (data) {
+                app.getTagsView.load(selector, data);
+            }, function (error) {
+                console.error(error);
+            })
+    }
+
     Controller.prototype.getRegisterPage = function (selector) {
         this.loadInitialView();
         app.registerView.load(selector);

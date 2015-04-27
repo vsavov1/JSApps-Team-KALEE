@@ -338,7 +338,6 @@ app.serverManager = (function() {
                 for(var i = 0; i < numberOfTags; i++) {
                     returnTags[tagsKeys[i]] = tags[tagsKeys[i]];
                 }
-
                 defer.resolve(returnTags);
 
             });

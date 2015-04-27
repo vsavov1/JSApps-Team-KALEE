@@ -298,7 +298,7 @@ footer {
   text-overflow: ellipsis;
 }
 
-#topPost, #mostViewedPosts, #newestPost {
+#topPost, #mostViewedPosts, #newestPost, #tags {
   margin-top: 10px;
   font-size: 20px;
   color: #f96c65;
@@ -1019,4 +1019,18 @@ input:focus ~ #mock-cursor {
   -moz-transition:.5s;
   -webkit-transition:.5s;
   transition:.5s;
+}
+#tagsContainer {
+  width: 300px;
+  max-height: : 300px;
+}
+.tag {
+  width: auto;
+  height: 20px;
+  background-color: #f96c65;
+  color: #fff;
+  margin: 5px;
+  padding: 5px;
+  float: left;
+  border-radius: 6px;
 }
