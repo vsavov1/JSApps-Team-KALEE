@@ -89,7 +89,7 @@ manager.isValidAdmin().then(function(data) {
         });
 
         this.get('#/Create', function () {
-            // Controller - Get create new post page
+            controller.getAdminCreatePostPage(selector);
         });
     });
 

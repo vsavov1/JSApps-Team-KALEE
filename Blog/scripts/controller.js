@@ -54,6 +54,7 @@ app.controller = (function() {
                 if (localStorage['logged-in']) {
                     data["logged-in"] = true;
                 }
+                console.log(data);
                 app.postView.load(selector, data);
 
                 _this.model.countView(id);
@@ -124,6 +125,10 @@ app.controller = (function() {
             }, function(error){
                 console.log(error);
             });
+    };
+
+    Controller.prototype.getAdminCreatePostPage = function(selector) {
+        app.adminCreatePostPage.load(selector);
     };
 
     return {

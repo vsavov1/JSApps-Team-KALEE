@@ -101,7 +101,9 @@ app.serverManager = (function() {
                     var viewsCount = data.results[index].viewsCount;
                     var voteCount = data.results[index].voteCount;
                     var commentsCount = data.results[index].commentsCount;
-                    var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
+                    var img = data.results[index].img;
+
+                    var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, img);
                     _this.postsRepo.posts.push(post);
                 }
                 defer.resolve(_this.postsRepo);
@@ -194,11 +196,13 @@ app.serverManager = (function() {
                 var dateCreated = data.createdAt;
                 var viewsCount = data.viewsCount;
                 var voteCount = data.voteCount;
+                var img = data.img;
                 var whereParameter = '{' +
                     '"post":' +
                         '{"__type":"Pointer","className":"Post","objectId":"' + id + '"}' +
                     '}';
-                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount);
+                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, 0, null, img);
+                console.log(post);
 
                 var commentNumber = 1;
                 _this._requester.get('classes/Comment?where=' + whereParameter)
@@ -230,22 +234,27 @@ app.serverManager = (function() {
     /*
      * Creates a new post in the database with the given title, author and content
      */
-    ServerManager.prototype.newPost = function(title, content, author) {
+    ServerManager.prototype.newPost = function(title, content, author, img) {
         var defer = Q.defer();
         var data = {
             'title': title,
             'content': content,
-            'author': author
-        }
+            'author': author,
+            'commentsCount': 0,
+            'viewsCount': 0,
+            'voteCount': 0,
+            'img': img
+        };
 
-        this._requester.post('classes/Post', data).then(function(data) {
-            defer.resolve(data);
-        }, function(error) {
-            defer.reject(error);
-        });
+        this._requester.post('classes/Post', data)
+            .then(function(data) {
+                defer.resolve(data);
+            }, function(error) {
+                defer.reject(error);
+            });
 
         return defer.promise;
-    }
+    };
 
     /*
      * Edits a given post from the database, switching the old properties with the new ones.
