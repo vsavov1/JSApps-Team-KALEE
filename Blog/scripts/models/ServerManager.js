@@ -467,17 +467,11 @@ app.serverManager = (function() {
     };
 
     ServerManager.prototype.countView = function(id) {
-        var defer = Q.defer();
         var data = {
             id: id,
             user: localStorage.username
         };
-        this._requester.post('functions/makeView', data)
-            .then(function(data) {
-                console.log("asd");
-            });
-
-        return defer.promise;
+        this._requester.post('functions/makeView', data);
     };
 
     function identifyRole(_this, roleId) {
