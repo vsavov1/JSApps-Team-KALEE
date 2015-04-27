@@ -33,7 +33,6 @@ app.serverManager = (function() {
         var defer = Q.defer();
         var _this = this;
         this.searchPostRepo.posts.length = 0;
-
         this._requester.get('classes/Post/')
             .then(function (data) {
             var keyWordsRepo = keyWords.split(' ');

@@ -1012,7 +1012,9 @@ input:focus ~ #mock-cursor {
   margin-left: 25px;
   margin-top: 8px;
   font-size: 18px;
-} {
+} 
+
+{
   width: 195px;
   height: 37px;
   background-color: #f96c65;
@@ -1041,4 +1043,9 @@ input:focus ~ #mock-cursor {
   padding: 5px;
   float: left;
   border-radius: 6px;
+  cursor: pointer; 
+}
+.tag a {
+  color: #fff;
+  text-decoration: none;
 }

@@ -37,3 +37,7 @@ Preparation:
 7. Handle voting up posts - ?
 
 8. Increment commentsCount property of posts upon new comment uploading - ?
+
+
+
+
