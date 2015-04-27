@@ -17,7 +17,8 @@ app.postView = (function() {
                 app.model.vote(id, 'up')
                     .then(function(data) {
                         $('#rateCount').text(data.result.voteCount);
-                    }, function(){
+                    }, function (error) {
+                        console.log(error);
                         poppy.pop('error', 'Error', 'You already voted for this post');
                     })
             });

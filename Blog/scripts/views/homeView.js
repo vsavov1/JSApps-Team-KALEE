@@ -26,7 +26,7 @@ app.homeView = (function() {
 
         if (type == "mostViewedPosts") {
             $("#leftSide").append($("<hr></hr>"));
-            $("#leftSide").append($("<h1 id='mostViewedPosts'>mostViewedPosts</h1>"));
+            $("#leftSide").append($("<h1 id='mostViewedPosts'>Most Viewed Posts</h1>"));
             $.get('templates/mediumPost.html', function(template) {
                 var output = Mustache.render(template, data);
                 $(selector).append(output);
