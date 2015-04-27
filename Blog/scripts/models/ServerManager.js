@@ -102,8 +102,9 @@ app.serverManager = (function() {
                     var voteCount = data.results[index].voteCount;
                     var commentsCount = data.results[index].commentsCount;
                     var img = data.results[index].img;
+                    var tags = data.results[index].tags;
 
-                    var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, img);
+                    var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, null, img, tags);
                     _this.postsRepo.posts.push(post);
                 }
                 defer.resolve(_this.postsRepo);
@@ -197,11 +198,12 @@ app.serverManager = (function() {
                 var viewsCount = data.viewsCount;
                 var voteCount = data.voteCount;
                 var img = data.img;
+                var tags = data.tags;
                 var whereParameter = '{' +
                     '"post":' +
                         '{"__type":"Pointer","className":"Post","objectId":"' + id + '"}' +
                     '}';
-                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, 0, null, img);
+                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, 0, null, img, tags);
                 console.log(post);
 
                 var commentNumber = 1;
@@ -482,6 +484,37 @@ app.serverManager = (function() {
             user: localStorage.username
         };
         this._requester.post('functions/makeView', data);
+    };
+
+    ServerManager.prototype.getMostUsedTags = function(numberOfTags) {
+        var defer = Q.defer();
+        var tags = {};
+        var returnTags = {};
+
+        this.getPosts()
+            .then(function(data){
+                data.posts.forEach(function(post){
+                    if(post.tags) {
+                        post.tags.forEach(function(tag){
+                            if(tags[tag] != undefined) {
+                                tags[tag]++;
+                            } else {
+                                tags[tag] = 1;
+                            }
+                        });
+                    }
+                });
+
+                var tagsKeys = Object.keys(tags);
+                for(var i = 0; i < numberOfTags; i++) {
+                    returnTags[tagsKeys[i]] = tags[tagsKeys[i]];
+                }
+
+                defer.resolve(returnTags);
+
+            });
+
+        return defer.promise;
     };
 
     function identifyRole(_this, roleId) {

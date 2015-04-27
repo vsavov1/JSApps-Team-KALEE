@@ -1,5 +1,5 @@
 var Post = (function() {
-    function Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, comments, img) {
+    function Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, comments, img, tags) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -13,6 +13,7 @@ var Post = (function() {
         this.voteCount = voteCount; 
         this.commentsCount = commentsCount;
         this.img = img;
+        this.tags = tags;
 
         //Махнах коментарите тъй като в таблицата в парсе ги няма // Веселин
         if (!comments) {
