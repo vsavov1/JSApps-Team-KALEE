@@ -94,14 +94,14 @@ app.serverManager = (function() {
                     start = 0;
                     length = data.results.length;
                 }
-
-                var iterationStart = start >= data.results.length ? 0 : start;
+                var iterationStart = start > data.results.length ? 0 : start;
                 var iterationLength = length > data.results.length ? data.results.length : length;
 
                 for (var index = iterationStart; index < iterationLength; index++) {
                     if (!data.results[index]) {
                         break;
                     }
+
                     var id = data.results[index].objectId;
                     var title = data.results[index].title;
                     var content = data.results[index].content;
@@ -110,6 +110,7 @@ app.serverManager = (function() {
                     var viewsCount = data.results[index].viewsCount;
                     var voteCount = data.results[index].voteCount;
                     var commentsCount = data.results[index].commentsCount;
+                    var img = data.results[index].img;
                     var tags = data.results[index].tags;
                     var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, null, img, tags);
                     _this.postsRepo.posts.push(post);

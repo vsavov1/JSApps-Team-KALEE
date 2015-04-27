@@ -54,9 +54,7 @@ app.controller = (function() {
                 if (localStorage['logged-in']) {
                     data["logged-in"] = true;
                 }
-                console.log(data);
                 app.postView.load(selector, data);
-
                 _this.model.countView(id);
             }, function(error) {
                 poppy.pop('error', 'Error', 'There was an error loading this post. ' +

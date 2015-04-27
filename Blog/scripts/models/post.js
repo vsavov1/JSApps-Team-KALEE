@@ -4,9 +4,6 @@ var Post = (function() {
         this.title = title;
         this.content = content;
         this.author = author;
-        // var dateParts = dateCreated.split('-');
-        // console.log(dateParts);
-        // this.dateCreated = dateParts[0] + "/" +  dateParts[1] - 1 + "/" +;
         var date = new Date(dateCreated);
         this.dateCreated = ((date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear());
         this.viewsCount = viewsCount;
@@ -15,7 +12,6 @@ var Post = (function() {
         this.img = img;
         this.tags = tags;
 
-        //Махнах коментарите тъй като в таблицата в парсе ги няма // Веселин
         if (!comments) {
             this.comments = [];
             this.commentsCount = 0; 

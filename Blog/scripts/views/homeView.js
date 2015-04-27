@@ -12,13 +12,11 @@ app.homeView = (function() {
             $.get('templates/largePost.html', function(template) {
                 var output = Mustache.render(template, data);
                 $(selector).append(output);
-
             });
         } 
 
         if (type == "newPosts") {
             $("#leftSide").append($("<hr></hr>"));
-
             $("#leftSide").append($("<h1 id='topPost'>Newest posts</h1>"));
             $.get('templates/largePost.html', function(template) {
                 var output = Mustache.render(template, data);
@@ -28,7 +26,6 @@ app.homeView = (function() {
 
         if (type == "mostViewedPosts") {
             $("#leftSide").append($("<hr></hr>"));
-
             $("#leftSide").append($("<h1 id='mostViewedPosts'>mostViewedPosts</h1>"));
             $.get('templates/mediumPost.html', function(template) {
                 var output = Mustache.render(template, data);
@@ -42,6 +39,7 @@ app.homeView = (function() {
                 $("#dropDownMenu").append($("<input id='searchInput' type='text'></input>"))
                 $("#dropDownMenu").append($("<span id='mock-cursor'>|</span>"))
             }
+            
             if ($("#searchInput")) {
                 app.model.search($("#searchInput").val())
                 .then(function (data) {
@@ -56,7 +54,6 @@ app.homeView = (function() {
                         $("#menuLinks").show();
                         $("#searchInput").remove();
                         $("#mock-cursor").remove();
-
                         $.get('templates/searchResults.html', function(template) {
                             var output = Mustache.render(template, data);
                             $(selector).append(output);
@@ -66,8 +63,6 @@ app.homeView = (function() {
                     console.log("err");
                 });
             }
-
-
         })
         // Sample solution using mustache - not necessary, can do it with DOM Manipulation as well.
     }
