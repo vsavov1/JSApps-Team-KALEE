@@ -21,7 +21,7 @@ app.controller = (function() {
     }
 
     Controller.prototype.getNewestPostView = function (selector) {
-        this.model.getNewstPosts()
+        this.model.getNewestPosts()
             .then(function(data) {
                 app.newestPostView.load(selector, data, "topPosts");
             }, function(error) {

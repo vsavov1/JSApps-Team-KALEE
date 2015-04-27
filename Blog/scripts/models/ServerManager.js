@@ -17,7 +17,7 @@ app.serverManager = (function() {
         this.mostViewPostRepo = {
             posts: [ ]
         };
-        this.newestPostRepo = {
+        this.newestPostsRepo = {
             posts: [ ]
         };
         this.searchPostRepo = {
@@ -94,8 +94,8 @@ app.serverManager = (function() {
                     start = 0;
                     length = data.results.length;
                 }
-                var iterationStart = start > data.results.length ? 0 : start;
-                var iterationLength = length > data.results.length ? data.results.length : length;
+                var iterationStart = start >= data.results.length ? 0 : start;
+                var iterationLength = length >= data.results.length ? data.results.length : length;
 
                 for (var index = iterationStart; index < iterationLength; index++) {
                     if (!data.results[index]) {
@@ -123,10 +123,10 @@ app.serverManager = (function() {
         return defer.promise;
     };
 
-     ServerManager.prototype.getNewstPosts = function () {
+     ServerManager.prototype.getNewestPosts = function () {
         var defer = Q.defer();
         var _this = this;
-        this.newestPostRepo.posts.length = 0;
+        this.newestPostsRepo.posts.length = 0;
 
         this._requester.get('classes/Post/')
             .then(function (data) {
@@ -134,7 +134,7 @@ app.serverManager = (function() {
                 return post.createdAt;
             });
 
-            var iterationLength = tempRepo.length - 5 > 0 ? tempRepo.length - 5 : 0;
+            var iterationLength = tempRepo.length - 5 >= 0 ? tempRepo.length - 5 : 0;
 
             for (var index = tempRepo.length; index > iterationLength; index--) {
                 var id = tempRepo[index - 1].objectId;
@@ -148,9 +148,9 @@ app.serverManager = (function() {
                 var img = tempRepo[index - 1].img;
                 var tags = tempRepo[index - 1].tags;
                 var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, null, img, tags);
-                _this.newestPostRepo.posts.push(post);
+                _this.newestPostsRepo.posts.push(post);
             }
-            defer.resolve(_this.newestPostRepo);
+            defer.resolve(_this.newestPostsRepo);
             }, function (error) {
                 defer.reject(error);
             });
@@ -169,7 +169,7 @@ app.serverManager = (function() {
                 return post.viewsCount;
             });
 
-            var iterationLength = tempRepo.length - 3 > 0 ? tempRepo.length - 3 : 0;
+            var iterationLength = tempRepo.length - 3 >= 0 ? tempRepo.length - 3 : 0;
 
             for (var index = tempRepo.length; index > iterationLength; index--) {
                 var id = tempRepo[index - 1].objectId;
@@ -203,7 +203,7 @@ app.serverManager = (function() {
                     return post.voteCount;
                 });
                 
-                var length = tempRepo.length - 4 > 0 ? tempRepo.length - 4 : 0;
+                var length = tempRepo.length - 4 >= 0 ? tempRepo.length - 4 : 0;
 
                 for (var index = tempRepo.length; index > length; index--) {
                     var id = tempRepo[index - 1].objectId;
