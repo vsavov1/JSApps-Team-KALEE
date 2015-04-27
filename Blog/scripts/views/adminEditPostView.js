@@ -8,14 +8,23 @@ app.adminEditPostView = (function() {
         $.get('templates/adminPostEdit.html', function(template) {
             var output = Mustache.render(template, data);
             $(selector).html(output);
-        });
-        //$("#leftSide").append($("<h1 id='topPost'>Top posts</h1>"));
-        //$.get('templates/admin.html', function(template) {
-        //    var output = Mustache.render(template, data);
-        //   $(selector).append(output);
-        //});
 
-        // Sample solution using mustache - not necessary, can do it with DOM Manipulation as well.
+            $('#submitButton').click(function () {
+                var title = $('#titleField').val();
+                var content = $('#contentField').val();
+                var author = $('#authorField').val();
+
+                var splitted = window.location.href.split('/');
+                app.model.editPost(splitted[splitted.length - 1], title, content, author)
+                    .then(function (data) {
+                        poppy.pop('success', 'Edit successful', 'You have edited the post successfully');
+                        splitted = window.location.href.split('#');
+                        window.location.replace(splitted[0] + '#/Admin');
+                    }, function (error) {
+                        poppy.pop('error', 'An error occured', error.statusText);
+                    });
+            });
+        });
     }
 
     return {

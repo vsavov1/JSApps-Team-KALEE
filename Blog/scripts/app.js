@@ -59,6 +59,19 @@ manager.isValidAdmin().then(function(data) {
             controller.getRegisterPage(selector);
         });
 
+        this.get('#/Post/:id', function (data) {
+            // Controller - Get Post page
+            var id = data['params'].id;
+            controller.getSinglePostPage(selector, id);
+
+        });
+
+
+        /* ADMIN VIEWS */
+        this.get('#/Admin', function (data) {
+            controller.getAdminPage('#center');
+        });
+
         this.get('#/EditPost/:id', function(data) {
             var id = data['params'].id;
             controller.getAdminEditPostPage(selector, id);
@@ -66,22 +79,12 @@ manager.isValidAdmin().then(function(data) {
 
         this.get('#/DeletePost/:id', function(data) {
             var id = data['params'].id;
-            controller.adminDeletePost(selector, id);
+            controller.adminDeletePost("#center", id);
         });
 
-        this.get('/UpdatePost/:id', function(data) {
+        this.get('#/DeleteComment/:id', function (data) {
             var id = data['params'].id;
-            var title = data['params'].title;
-            var content = data['params'].title;
-            var author = data['params'].author;
-            controller.updatePost(selector, id,title, content, author);
-        });
-
-        this.get('#/Post/:id', function (data) {
-            // Controller - Get Post page
-            var id = data['params'].id;
-            controller.getSinglePostPage(selector, id);
-
+            controller.adminDeleteComment("#center", id);
         });
 
         this.get('#/Create', function () {

@@ -81,27 +81,30 @@ app.serverManager = (function() {
 
         this._requester.get('classes/Post/')
             .then(function (data) {
-            if (!start) {
-                start = 0;
-                length = data.results.length;
-            }
-
-            for (var index = start; index < length; index++) {
-                if (!data.results[index]) {
-                    break;
+                if (!start) {
+                    start = 0;
+                    length = data.results.length;
                 }
-                var id = data.results[index].objectId;
-                var title = data.results[index].title;
-                var content = data.results[index].content;
-                var author = data.results[index].author;
-                var dateCreated = data.results[index].createdAt;
-                var viewsCount = data.results[index].viewsCount;
-                var voteCount = data.results[index].voteCount;
-                var commentsCount = data.results[index].commentsCount;
-                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
-                _this.postsRepo.posts.push(post);
-            }
-            defer.resolve(_this.postsRepo);
+
+                var iterationStart = start >= data.results.length ? 0 : start;
+                var iterationLength = length > data.results.length ? data.results.length : length;
+
+                for (var index = iterationStart; index < iterationLength; index++) {
+                    if (!data.results[index]) {
+                        break;
+                    }
+                    var id = data.results[index].objectId;
+                    var title = data.results[index].title;
+                    var content = data.results[index].content;
+                    var author = data.results[index].author;
+                    var dateCreated = data.results[index].createdAt;
+                    var viewsCount = data.results[index].viewsCount;
+                    var voteCount = data.results[index].voteCount;
+                    var commentsCount = data.results[index].commentsCount;
+                    var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
+                    _this.postsRepo.posts.push(post);
+                }
+                defer.resolve(_this.postsRepo);
             }, function (error) {
                 defer.reject(error);
             });
@@ -116,11 +119,13 @@ app.serverManager = (function() {
 
         this._requester.get('classes/Post/')
             .then(function (data) {
-            var tempRepo = _.sortBy(data.results, function (post) {
+            var tempRepo = _.sortBy(data.results, function(post) {
                 return post.viewsCount;
-            })
+            });
 
-            for (var index = tempRepo.length; index > tempRepo.length - 3; index--) {
+            var iterationLength = tempRepo.length - 3 > 0 ? tempRepo.length - 3 : 0;
+
+            for (var index = tempRepo.length; index > iterationLength; index--) {
                 var id = tempRepo[index - 1].objectId;
                 var title = tempRepo[index - 1].title;
                 var content = tempRepo[index - 1].content;
@@ -150,7 +155,9 @@ app.serverManager = (function() {
                     return post.voteCount;
                 });
 
-                for (var index = tempRepo.length; index > tempRepo.length - 4; index--) {
+                var length = tempRepo.length - 4 > 0 ? tempRepo.length - 4 : 0;
+
+                for (var index = tempRepo.length; index > length; index--) {
                     var id = tempRepo[index - 1].objectId;
                     var title = tempRepo[index - 1].title;
                     var content = tempRepo[index - 1].content;
@@ -278,7 +285,7 @@ app.serverManager = (function() {
                         '{"__type":"Pointer","className":"Post","objectId":"' + id + '"}' +
                     '}';
 
-	    _this._requester.get('classes/Comment?where=' + whereParameter)
+	    this._requester.get('classes/Comment?where=' + whereParameter)
             .then(function (data) {
                 for (var comment in data.results) {
                     this.deleteComment(data.results[comment].objectId);

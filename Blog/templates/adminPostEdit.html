@@ -1,15 +1,10 @@
-<div>Author: <input type="text" value="{{author}}"></div>
-<div>Title: <input type="text" value="{{title}}"></div>
-<div>Content: <textarea>{{content}}</textarea></div>
-<div><a href="#/UpdatePost/{{id}}">Save changes</a></div>
+<div>Author: <input id="authorField" type="text" value="{{author}}"></div>
+<div>Title: <input id="titleField" type="text" value="{{title}}"></div>
+<div>Content: <textarea id="contentField" rows="8" cols="80">{{content}}</textarea></div>
+<div><button id="submitButton">Save Changes</button></div>
 <br />
 <br />
 Comments:
-<hr />
-Name: <input type="text" id="name" /><br />
-Comment: <input type="text" id="comment" /><br />
-<button id="commentSend">Send</button>
-
 
 <br />
 <br />
@@ -17,7 +12,8 @@ Comment: <input type="text" id="comment" /><br />
     {{#comments}}
     <div class="comment">
         Author: {{author}}<br />
-        Comment: {{content}}<br />
+        Comment: {{content}}<br/>
+        <div><a href="#/DeleteComment/{{id}}">Delete Comment</a></div>
     </div><br />
     {{/comments}}
 </div>
