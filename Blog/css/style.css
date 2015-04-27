@@ -281,6 +281,11 @@ footer {
   height: 325px;
   float: left;
 }
+.largePost img{
+  max-width: 320px;
+  max-height: 260px;
+
+}
 .largePost h3 {
   height: 45px;
 }
@@ -384,6 +389,7 @@ hr {
   margin-top: 10px;
 }
 .mediumPost img{
+  max-width: 200px;
   float: left;
 }
 
@@ -471,6 +477,7 @@ hr {
 .smallPost img {
   float: left;
   margin-right: 5px;
+  max-width: 80px;
 }
 
 .smallPost h3 a{

@@ -145,7 +145,9 @@ app.serverManager = (function() {
                 var viewsCount = tempRepo[index - 1].viewsCount;
                 var voteCount = tempRepo[index - 1].voteCount;
                 var commentsCount = tempRepo[index - 1].commentsCount;
-                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
+                var img = tempRepo[index - 1].img;
+                var tags = tempRepo[index - 1].tags;
+                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, null, img, tags);
                 _this.newestPostRepo.posts.push(post);
             }
             defer.resolve(_this.newestPostRepo);
@@ -178,7 +180,9 @@ app.serverManager = (function() {
                 var viewsCount = tempRepo[index - 1].viewsCount;
                 var voteCount = tempRepo[index - 1].voteCount;
                 var commentsCount = tempRepo[index - 1].commentsCount;
-                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
+                var img = tempRepo[index - 1].img;
+                var tags = tempRepo[index - 1].tags;
+                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, null, img, tags);
                 _this.mostViewPostRepo.posts.push(post);
             }
             defer.resolve(_this.mostViewPostRepo);
@@ -210,7 +214,9 @@ app.serverManager = (function() {
                     var viewsCount = tempRepo[index - 1].viewsCount;
                     var voteCount = tempRepo[index - 1].voteCount;
                     var commentsCount = tempRepo[index - 1].commentsCount;
-                    var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
+                    var img = tempRepo[index - 1].img;
+                    var tags = tempRepo[index - 1].tags;
+                    var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount,  null, img, tags);
                     _this.topPostRepo.posts.push(post);
                 }
                 defer.resolve(_this.topPostRepo);
@@ -238,13 +244,15 @@ app.serverManager = (function() {
                 var dateCreated = data.createdAt;
                 var viewsCount = data.viewsCount;
                 var voteCount = data.voteCount;
+                var commentsCount = data.commentsCount;
+
                 var img = data.img;
                 var tags = data.tags;
                 var whereParameter = '{' +
                     '"post":' +
                         '{"__type":"Pointer","className":"Post","objectId":"' + id + '"}' +
                     '}';
-                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, 0, null, img, tags);
+                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, null, img, tags);
 
                 var commentNumber = 1;
                 _this._requester.get('classes/Comment?where=' + whereParameter)
