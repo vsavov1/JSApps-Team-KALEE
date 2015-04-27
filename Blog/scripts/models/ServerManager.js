@@ -17,6 +17,9 @@ app.serverManager = (function() {
         this.mostViewPostRepo = {
             posts: [ ]
         };
+        this.newestPostRepo = {
+            posts: [ ]
+        };
         this.searchPostRepo = {
             posts: [ ]
         }
@@ -101,10 +104,7 @@ app.serverManager = (function() {
                     var viewsCount = data.results[index].viewsCount;
                     var voteCount = data.results[index].voteCount;
                     var commentsCount = data.results[index].commentsCount;
-                    var img = data.results[index].img;
-                    var tags = data.results[index].tags;
-
-                    var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, null, img, tags);
+                    var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
                     _this.postsRepo.posts.push(post);
                 }
                 defer.resolve(_this.postsRepo);
@@ -114,6 +114,39 @@ app.serverManager = (function() {
 
         return defer.promise;
     };
+
+     ServerManager.prototype.getNewstPosts = function () {
+        var defer = Q.defer();
+        var _this = this;
+        this.newestPostRepo.posts.length = 0;
+
+        this._requester.get('classes/Post/')
+            .then(function (data) {
+            var tempRepo = _.sortBy(data.results, function(post) {
+                return post.createdAt;
+            });
+
+            var iterationLength = tempRepo.length - 5 > 0 ? tempRepo.length - 5 : 0;
+
+            for (var index = tempRepo.length; index > iterationLength; index--) {
+                var id = tempRepo[index - 1].objectId;
+                var title = tempRepo[index - 1].title;
+                var content = tempRepo[index - 1].content;
+                var author = tempRepo[index - 1].author;
+                var dateCreated = tempRepo[index - 1].createdAt;
+                var viewsCount = tempRepo[index - 1].viewsCount;
+                var voteCount = tempRepo[index - 1].voteCount;
+                var commentsCount = tempRepo[index - 1].commentsCount;
+                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount);
+                _this.newestPostRepo.posts.push(post);
+            }
+            defer.resolve(_this.newestPostRepo);
+            }, function (error) {
+                defer.reject(error);
+            });
+        return defer.promise;
+    }
+
 
     ServerManager.prototype.getMostViewedPosts = function () {
         var defer = Q.defer();
@@ -197,14 +230,11 @@ app.serverManager = (function() {
                 var dateCreated = data.createdAt;
                 var viewsCount = data.viewsCount;
                 var voteCount = data.voteCount;
-                var img = data.img;
-                var tags = data.tags;
                 var whereParameter = '{' +
                     '"post":' +
                         '{"__type":"Pointer","className":"Post","objectId":"' + id + '"}' +
                     '}';
-                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, 0, null, img, tags);
-                console.log(post);
+                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount);
 
                 var commentNumber = 1;
                 _this._requester.get('classes/Comment?where=' + whereParameter)
@@ -236,28 +266,22 @@ app.serverManager = (function() {
     /*
      * Creates a new post in the database with the given title, author and content
      */
-    ServerManager.prototype.newPost = function(title, content, author, img, tags) {
+    ServerManager.prototype.newPost = function(title, content, author) {
         var defer = Q.defer();
         var data = {
             'title': title,
             'content': content,
-            'author': author,
-            'commentsCount': 0,
-            'viewsCount': 0,
-            'voteCount': 0,
-            'img': img,
-            'tags': tags
-        };
+            'author': author
+        }
 
-        this._requester.post('classes/Post', data)
-            .then(function(data) {
-                defer.resolve(data);
-            }, function(error) {
-                defer.reject(error);
-            });
+        this._requester.post('classes/Post', data).then(function(data) {
+            defer.resolve(data);
+        }, function(error) {
+            defer.reject(error);
+        });
 
         return defer.promise;
-    };
+    }
 
     /*
      * Edits a given post from the database, switching the old properties with the new ones.
@@ -484,37 +508,6 @@ app.serverManager = (function() {
             user: localStorage.username
         };
         this._requester.post('functions/makeView', data);
-    };
-
-    ServerManager.prototype.getMostUsedTags = function(numberOfTags) {
-        var defer = Q.defer();
-        var tags = {};
-        var returnTags = {};
-
-        this.getPosts()
-            .then(function(data){
-                data.posts.forEach(function(post){
-                    if(post.tags) {
-                        post.tags.forEach(function(tag){
-                            if(tags[tag] != undefined) {
-                                tags[tag]++;
-                            } else {
-                                tags[tag] = 1;
-                            }
-                        });
-                    }
-                });
-
-                var tagsKeys = Object.keys(tags);
-                for(var i = 0; i < numberOfTags; i++) {
-                    returnTags[tagsKeys[i]] = tags[tagsKeys[i]];
-                }
-
-                defer.resolve(returnTags);
-
-            });
-
-        return defer.promise;
     };
 
     function identifyRole(_this, roleId) {
