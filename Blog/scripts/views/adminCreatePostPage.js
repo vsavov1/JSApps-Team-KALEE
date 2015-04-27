@@ -15,10 +15,10 @@ app.adminCreatePostPage = (function() {
                 var postText = $('#postText').val();
                 var author = localStorage['username'];
                 var picUrl = $('#picUrl').val();
+                var tags = $('#tags').val().split(',');
 
-                app.model.newPost(postTitle, postText, author, picUrl)
+                app.model.newPost(postTitle, postText, author, picUrl, tags)
                     .then(function(data){
-                        console.log(data);
                         window.location = '#/Post/' + data.objectId;
                     }, function(error){
                         poppy.pop('error', 'Error', 'An error ocurred while trying to post your article.' +
