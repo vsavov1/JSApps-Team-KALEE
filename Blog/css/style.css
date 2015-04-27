@@ -536,7 +536,8 @@ hr {
 #postView img {
   margin-top: 15px;
   margin-bottom: 15px;
-  float: left;
+  max-width: 1000px;
+  /*float: left;*/
 }
 #postViewInfo {
   width: 1000px;

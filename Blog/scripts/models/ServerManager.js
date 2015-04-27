@@ -276,12 +276,14 @@ app.serverManager = (function() {
     /*
      * Creates a new post in the database with the given title, author and content
      */
-    ServerManager.prototype.newPost = function(title, content, author) {
+    ServerManager.prototype.newPost = function(title, content, author, picUrl, tags) {
         var defer = Q.defer();
         var data = {
             'title': title,
             'content': content,
-            'author': author
+            'author': author,
+            'img': picUrl,
+            'tags': tags
         }
 
         this._requester.post('classes/Post', data).then(function(data) {

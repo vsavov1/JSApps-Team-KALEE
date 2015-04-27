@@ -6,6 +6,7 @@ app.postView = (function() {
             $("#leftSide").empty();
             $('#rightSide').empty();
             $('#center').empty();
+            console.log(data);
             var output = Mustache.render(template, data);
             $(selector).html(output);
 

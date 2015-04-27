@@ -6,12 +6,12 @@ var Post = (function() {
         this.author = author;
         var date = new Date(dateCreated);
         this.dateCreated = ((date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear());
-        this.viewsCount = viewsCount;
-        this.voteCount = voteCount; 
-        this.commentsCount = commentsCount;
+        this.viewsCount = viewsCount || 0;
+        this.voteCount = voteCount  || 0; 
+        this.commentsCount = commentsCount  || 0;
         this.img = img;
         this.tags = tags;
-
+        
         if (!comments) {
             this.comments = [];
             this.commentsCount = 0; 

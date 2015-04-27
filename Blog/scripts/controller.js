@@ -51,6 +51,7 @@ app.controller = (function() {
         var _this = this;
         this.model.getPost(id)
             .then(function (data) {
+                console.log(data);
                 if (localStorage['logged-in']) {
                     data["logged-in"] = true;
                 }
