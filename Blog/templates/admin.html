@@ -1,14 +1,15 @@
 {{#posts}}
 <!-- <img src="{{imgSoruce}}" alt=""> -->
 <!-- <img src="../img/test.jpg" alt=""> -->
-<div>Author: {{author}}</div>
-<div>Content: {{content}}</div>
-<div>Title: {{title}}</div>
-<div>ID: {{id}}</div>
-<div><a href="#/Post/{{id}}">View Post</a></div>
-<div><a href="#/DeletePost/{{id}}">Delete Post</a></div>
-<div><a href="#/EditPost/{{id}}">Edit Post</a></div>
-<br />
-<br />
-<br />
+	<div class="adminPostContainer">
+		<div class="adminTite"><p>{{title}}</p></div>
+		<div class="adminAuthor"><p>{{author}}</p></div>
+		<div class="adminPostId">ID: <span>{{id}}</span></div>
+		<div class="adminPostViewButton" ><a href="#/Post/{{id}}">View Post</a></div>
+		<div class="adminPostEditButton" ><a href="#/EditPost/{{id}}">Edit Post</a></div>
+		<div class="adminPostDeleteButton" ><a href="#/DeletePost/{{id}}">Delete Post</a></div>
+		<br />
+		<br />
+		<br />
+	</div>
 {{/posts}}

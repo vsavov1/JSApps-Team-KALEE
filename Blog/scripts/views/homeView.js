@@ -2,6 +2,7 @@ var app = app || {};
 
 app.homeView = (function() {
     function HomeView(selector, data, type) {
+        
         if (type == "topPosts") {
             $(selector).empty();
             $('#rightSide').empty();

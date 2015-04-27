@@ -664,7 +664,7 @@ hr {
 #postViewCommentContent p {
   max-width: 900px;
 }
-textarea#commentContent{
+textarea#commentContent, textarea#contentField{
   max-width: 1000px;
   min-width: 1000px;
   min-height: 120px;
@@ -677,7 +677,7 @@ textarea#commentContent{
   margin-bottom: 8px;
   margin-top: 8px;
 }
-#commentSend {
+#commentSend, #submitButton {
   width: 195px;
   height: 37px;
   background-color: #f96c65;
@@ -693,10 +693,10 @@ textarea#commentContent{
   -webkit-transition:.5s;
   transition:.5s;
 }
-#commentSend:hover {
+#commentSend:hover, #submitButton:hovere {
   background-color: #de5959;
 }
-#commentSend p {
+#commentSend p, #submitButton p {
   margin-left: 25px;
   margin-top: 8px;
   font-size: 18px;
@@ -787,3 +787,195 @@ input:focus ~ #mock-cursor {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.adminPostContainer {
+  width: 300px;
+  height: 200px;
+  float: left;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+.adminTite {
+  margin-top: 10px;
+  width: 300px;
+  height: 34px;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: left;
+}
+.adminTite p {
+  color: #f96c65;
+}
+.adminAuthor, .adminPostId {
+  width: 300px;
+  height: 20px;
+  float: left;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.adminAuthor p {
+  color: #68d2d1;
+}
+.adminPostId span {
+  color: #f96c65;
+}
+.adminPostViewButton {
+  width: 90px;
+  height: 37px;
+  background-color: #f96c65;
+  float: left;
+  margin-top: 25px;
+  border-radius: 6px;
+  margin-right: 10px;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+}
+.adminPostViewButton:hover {
+  background-color: #de5959;
+}
+.adminPostViewButton a {
+  margin-left: 12px;
+  margin-top: 10px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #fff;
+  float: left;
+}
+.adminPostEditButton {
+  width: 90px;
+  height: 37px;
+  background-color: #f96c65;
+  float: left;
+  margin-top: 25px;
+  border-radius: 6px;
+  margin-right: 10px;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+}
+.adminPostEditButton:hover {
+  background-color: #de5959;
+}
+.adminPostEditButton a {
+  margin-left: 16px;
+  margin-top: 10px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #fff;
+  float: left;
+}
+.adminPostDeleteButton {
+  width: 90px;
+  height: 37px;
+  background-color: #f96c65;
+  float: left;
+  margin-top: 25px;
+  border-radius: 6px;
+  margin-right: 10px;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+}
+.adminPostDeleteButton:hover {
+  background-color: #de5959;
+}
+.adminPostDeleteButton a {
+  margin-left: 9px;
+  margin-top: 10px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #fff;
+  float: left;
+}
+.adminPostEditAuthor, .adminPostEditTitle {
+  width: 1000px;
+  height: auto;
+  margin-bottom: 10px;
+  float: left;
+  margin-top: 20px;
+}
+.adminPostEditAuthor p, .adminPostEditTitle p {
+  font-size: 15px;
+  min-width: 70px;
+  width: auto;
+  color: #68d2d1;
+  float: left;
+  margin-right: 15px;
+  margin-top: 6px;
+}
+.adminPostEditAuthor input, .adminPostEditTitle input{
+  width: 830px;
+  height: 25px;
+  float: left;
+  border: 1px solid #e3e4e8 ;
+  border-radius: 5px;
+}
+
+.adminPostEditAuthor input[type='text'], .adminPostEditTitle input[type='text']{
+  padding-left: 5px;
+  padding-bottom: 5px;
+  font-family: Segoe UI Light;
+  font-size: 20px;
+}
+
+.adminPostCommentContainer{
+  width: 1000px;
+  height: auto;
+  float: left;
+}
+.adminCommentEditAuthor{
+  width: 70px;
+}
+.adminCommentEditAuthor p{
+  color: #68d2d1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.adminCommentEditContent{
+  width: 900px;
+  float: right;
+}
+.adminCommentEditContent p{
+  width: 900px;
+  height: auto;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.adminCommentDeleteButton {
+  width: 130px;
+  height: 37px;
+  background-color: #f96c65;
+  float: right;
+  margin-top: 25px;
+  border-radius: 6px;
+  margin-right: 10px;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+}
+.adminCommentDeleteButton:hover {
+  background-color: #de5959;
+}
+.adminCommentDeleteButton a {
+  margin-left: 11px;
+  margin-top: 10px;
+  font-size: 15px;
+  text-decoration: none;
+  color: #fff;
+  float: left;
+}
+

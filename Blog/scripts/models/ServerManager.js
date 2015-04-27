@@ -39,7 +39,7 @@ app.serverManager = (function() {
                 if (!data.results[index]) {
                     break;
                 }
-                
+
                 var postWords = data.results[index].content.split(' ');
                 for(var i = 0; i < postWords.length; i++){
                     for( var z = 0; z < keyWordsRepo.length; z++){
@@ -154,7 +154,7 @@ app.serverManager = (function() {
                 var tempRepo = _.sortBy(data.results, function(post) {
                     return post.voteCount;
                 });
-
+                
                 var length = tempRepo.length - 4 > 0 ? tempRepo.length - 4 : 0;
 
                 for (var index = tempRepo.length; index > length; index--) {
