@@ -123,11 +123,11 @@ app.controller = (function() {
             })
     };
 
-    Controller.prototype.adminDeleteComment = function (selector, id) {
+    Controller.prototype.adminDeleteComment = function (selector, id, lastEditPostId) {
         this.model.deleteComment(id)
             .then(function (data) {
                 var splitted = window.location.href.split('#');
-                window.location.replace(splitted[0] + '#/Admin');
+                window.location.replace(splitted[0] + '#/EditPost/' + lastEditPostId);
                 poppy.pop('success', 'Success', 'The comment has been deleted successfully');
             }, function (error) {
                 poppy.pop('error', 'Error', error.statusText);

@@ -42,7 +42,7 @@ manager.isValidAdmin().then(function(data) {
         var selector = '#center';
         var leftBox = '#leftSide';
         var rightBox = '#rightSide';
-
+        var lastEditPostId = '';
         this.get('#/', function () {
             controller.getHomePage(leftBox);
             controller.getNewestPostView(rightBox);
@@ -72,6 +72,7 @@ manager.isValidAdmin().then(function(data) {
 
         this.get('#/EditPost/:id', function(data) {
             var id = data['params'].id;
+            lastEditPostId =  id;
             controller.getAdminEditPostPage(selector, id);
         });
 
@@ -82,7 +83,7 @@ manager.isValidAdmin().then(function(data) {
 
         this.get('#/DeleteComment/:id', function (data) {
             var id = data['params'].id;
-            controller.adminDeleteComment("#center", id);
+            controller.adminDeleteComment("#center", id, lastEditPostId);
         });
 
         this.get('#/Create', function () {
