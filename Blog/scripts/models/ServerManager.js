@@ -51,9 +51,12 @@ app.serverManager = (function() {
                     for (var i = 0; i < postTags.length; i++) {
                         for (var z = 0; z < keyWordsRepo.length; z++) {
                             var isContain = false;
-                            if (postTags[i].toLowerCase().trim() === keyWordsRepo[z].toLowerCase().trim() ||
-                                keyWordsRepo[z].toLowerCase().trim() === data.results[index].title ||
-                                data.results[index].title.indexOf(keyWordsRepo[z].toLowerCase().trim()) >= 0) {
+                            var postTagCheck = postTags[i].toLowerCase().trim();
+                            var keyWordCheck = keyWordsRepo[z].toLowerCase().trim();
+                            var titleCheck = data.results[index].title.toLowerCase().trim();
+                            if (postTagCheck === keyWordCheck ||
+                                keyWordCheck === titleCheck ||
+                                titleCheck.indexOf(keyWordCheck) >= 0) {
 
                                 isContain = true;
                             }
