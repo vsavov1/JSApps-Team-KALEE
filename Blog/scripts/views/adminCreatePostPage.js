@@ -15,14 +15,17 @@ app.adminCreatePostPage = (function() {
                 var postText = $('#contentField').val();
                 var author = localStorage['username'];
                 var picUrl = $('#pictureField').val();
-                var tags = $('#tags').val().split(/[, ]+/);
+                if(tags) {
+                    var tags = $('#tags').val().split(/[, ]+/);
+                }
                 
                 app.model.newPost(postTitle, postText, author, picUrl, tags)
-                    .then(function(data){
+                    .then(function(data) {
                         window.location = '#/Post/' + data.objectId;
                     }, function(error){
-                        poppy.pop('error', 'Error', 'An error ocurred while trying to post your article.' +
-                        ' Please try again later.');
+                        var errorsOutput = error.join(', ');
+                        poppy.pop('error', 'Error', 'An error/s ocurred while trying to post your article: ' +
+                        errorsOutput);
                     });
             });
         });

@@ -284,13 +284,34 @@ app.serverManager = (function() {
      */
     ServerManager.prototype.newPost = function(title, content, author, picUrl, tags) {
         var defer = Q.defer();
+        var errors = [];
+        if(!title || title.length == 0) {
+            errors.push('no title');
+        }
+        if(!content || content.length == 0) {
+            errors.push('no content');
+        }
+        if(!author || author.length == 0) {
+            errors.push('no author');
+        }
+        if(!picUrl || picUrl.length == 0) {
+            errors.push('no picture url');
+        }
+        if(!tags || tags.length == 0) {
+            errors.push('no tags');
+        }
+
+        if(errors.length > 0) {
+            defer.reject(errors);
+        }
+
         var data = {
             'title': title,
             'content': content,
             'author': author,
             'img': picUrl,
             'tags': tags
-        }
+        };
 
         this._requester.post('classes/Post', data).then(function(data) {
             defer.resolve(data);
