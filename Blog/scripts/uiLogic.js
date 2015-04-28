@@ -3,6 +3,9 @@ var app = app || {};
 $(document).ready(function(e){
    $('#menuButton').on('click',function(){
       $('#dropDownMenu').slideToggle();
+      $("#menuLinks").show();
+      $("#searchInput").remove();
+      $("#mock-cursor").remove();
    });
 });
 
