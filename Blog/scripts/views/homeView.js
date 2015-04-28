@@ -41,27 +41,30 @@ app.homeView = (function() {
             }
 
             if ($("#searchInput")) {
-                app.model.search($("#searchInput").val())
-                    .then(function(data) {
-                        if (data.posts.length == 0) {
-                            poppy.pop('error', 'No search results', 'Please try again :)');
-                        } else {
-                            console.log(data);
-                            $('#dropDownMenu').slideUp();
-                            $("#leftSide").empty();
-                            $('#rightSide').empty();
-                            $('#center').empty();
-                            $("#menuLinks").show();
-                            $("#searchInput").remove();
-                            $("#mock-cursor").remove();
-                            $.get('templates/searchResults.html', function(template) {
-                                var output = Mustache.render(template, data);
-                                $(selector).append(output);
-                            });
-                        }
-                    }, function(error) {
-                        console.log("err");
-                    });
+                var searchValue = $("#searchInput").val();
+                if(searchValue) {
+                    app.model.search(searchValue)
+                        .then(function(data) {
+                            if (data.posts.length == 0) {
+                                poppy.pop('error', 'No search results', 'Please try again :)');
+                            } else {
+                                console.log(data);
+                                $('#dropDownMenu').slideUp();
+                                $("#leftSide").empty();
+                                $('#rightSide').empty();
+                                $('#center').empty();
+                                $("#menuLinks").show();
+                                $("#searchInput").remove();
+                                $("#mock-cursor").remove();
+                                $.get('templates/searchResults.html', function(template) {
+                                    var output = Mustache.render(template, data);
+                                    $(selector).append(output);
+                                });
+                            }
+                        }, function(error) {
+                            console.log("err");
+                        });
+                }
             }
         });
         // Sample solution using mustache - not necessary, can do it with DOM Manipulation as well.
