@@ -1047,23 +1047,6 @@ input:focus ~ #mock-cursor {
   margin-top: 8px;
   font-size: 18px;
 } 
-
- {
-  width: 195px;
-  height: 37px;
-  background-color: #f96c65;
-  float: right;
-  margin-top: 25px;
-  border-radius: 6px;
-  margin-right: 20px;
-  text-decoration: none;
-  color: #fff;
-  -o-transition:.5s;
-  -ms-transition:.5s;
-  -moz-transition:.5s;
-  -webkit-transition:.5s;
-  transition:.5s;
-}
 #tagsContainer {
   width: 300px;
   max-height: 300px;
@@ -1082,4 +1065,19 @@ input:focus ~ #mock-cursor {
 .tag a {
   color: #fff;
   text-decoration: none;
+}
+#aprilBox{
+  width: 300px;
+  float: left;
+}
+#aprilBox a {
+  float: left;
+  /*margin-top: 25px;*/
+  padding: 6px 10px 6px 10px;
+  background-color: #f96c65;
+  /*margin-top: 25px;*/
+  border-radius: 6px;
+  margin-right: 20px;
+  text-decoration: none;
+  color: #fff;
 }

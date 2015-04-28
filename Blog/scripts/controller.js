@@ -31,7 +31,7 @@ app.controller = (function() {
     Controller.prototype.getNewestPostView = function (selector) {
         this.model.getNewestPosts()
             .then(function(data) {
-                app.newestPostView.load(selector, data, "topPosts");
+                app.newestPostView.load(selector, data, "topPosts");                
             }, function(error) {
                 console.error(error);
             });
@@ -51,6 +51,26 @@ app.controller = (function() {
                 app.homeView.load(selector, data, "mostViewedPosts");
             }, function(error){
                 console.error(error);
+            });
+    };
+
+    Controller.prototype.getSearchByMonth = function(selector, month) {
+        this.model.searchByMonth(month)
+            .then(function(data){
+                app.allPostsView.load(selector, data);
+            }, function(){
+                poppy.pop('error', 'Error', 'There was an error loading posts. ' +
+                'Please try again later.');
+            });
+    };
+
+    Controller.prototype.getAllPostsPage = function(selector) {
+        this.model.getPosts()
+            .then(function(data){
+                app.allPostsView.load(selector, data);
+            }, function(){
+                poppy.pop('error', 'Error', 'There was an error loading posts. ' +
+                'Please try again later.');
             });
     };
 
@@ -107,6 +127,7 @@ app.controller = (function() {
         this.model.getMostUsedTags(10)
             .then(function (data) {
                 app.getTagsView.load(selector, data);
+                app.homeView.load("","","monthsSearch");
             }, function (error) {
                 console.error(error);
             })

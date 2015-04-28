@@ -23,6 +23,9 @@ app.serverManager = (function() {
         this.searchPostRepo = {
             posts: [ ]
         }
+        this.searchByMonthRepo = {
+            posts: [ ]
+        }
     }
 
     /*
@@ -543,6 +546,49 @@ app.serverManager = (function() {
 
         return defer.promise;
     }
+
+    ServerManager.prototype.searchByMonth = function (month) {
+        var defer = Q.defer();
+        var _this = this;
+        this.searchByMonthRepo.posts.length = 0;
+        this._requester.get('classes/Post/')
+            .then(function (data) {
+                var monthNames = ["January", "February", "March", "April", "May", "June",
+                                    "July", "August", "September", "October", "November", "December" ];
+                for (var index = 0; index < data.results.length; index++) {
+                    if (!data.results[index]) {
+                        break;
+                    }
+                    // console.log(month);
+                    var date = new Date(data.results[index].createdAt).getMonth();
+                    if (monthNames[date] == month) {
+                        isContain = true;
+                    }
+
+                    if (isContain) {
+                        var id = data.results[index].objectId;
+                        var title = data.results[index].title;
+                        var content = data.results[index].content;
+                        var author = data.results[index].author;
+                        var dateCreated = data.results[index].createdAt;
+                        var viewsCount = data.results[index].viewsCount;
+                        var voteCount = data.results[index].voteCount;
+                        var commentsCount = data.results[index].commentsCount;
+                        var img = data.results[index].img;
+                        var tags = data.results[index].tags;
+
+                        var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, null, img, tags);
+                        _this.searchByMonthRepo.posts.push(post);
+                    }
+                }
+                console.log(_this.searchByMonthRepo);
+                defer.resolve(_this.searchByMonthRepo);
+            }, function (error) {
+                defer.reject(error);
+            });
+
+        return defer.promise;
+    };
 
     /*
      * Not complete.

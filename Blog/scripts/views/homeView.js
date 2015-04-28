@@ -33,6 +33,11 @@ app.homeView = (function() {
             });
         }
 
+        if (type == "monthsSearch") {
+
+            $("#rightSide").append($("<div id='aprilBox'><h1 id='newestPost'>Month history</h1><a href='#/Month/April'>April</a></div>"));
+        }
+
         $("#searchButton").unbind('click').click(function() {
             if ($("#menuLinks").length && !$("#searchInput").length) {
                 $("#menuLinks").hide();
