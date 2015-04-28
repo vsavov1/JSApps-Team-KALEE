@@ -43,13 +43,23 @@ app.controller = (function() {
                 app.homeView.load(selector, data, "topPosts");
         }, function(error){
             console.error(error);
-        })
+        });
        
         this.model.getMostViewedPosts()
             .then(function(data){
                 app.homeView.load(selector, data, "mostViewedPosts");
             }, function(error){
                 console.error(error);
+            });
+    };
+
+    Controller.prototype.getAllPostsPage = function(selector) {
+        this.model.getPosts()
+            .then(function(data){
+                app.allPostsView.load(selector, data);
+            }, function(){
+                poppy.pop('error', 'Error', 'There was an error loading posts. ' +
+                'Please try again later.');
             });
     };
 

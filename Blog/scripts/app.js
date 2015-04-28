@@ -64,6 +64,10 @@ manager.isValidAdmin().then(function(data) {
 
         });
 
+        this.get('#/AllPosts', function (data) {
+            controller.getAllPostsPage(selector);
+        });
+
 
         /* ADMIN VIEWS */
         this.get('#/Admin', function (data) {
