@@ -35,46 +35,54 @@ app.serverManager = (function() {
         this.searchPostRepo.posts.length = 0;
         this._requester.get('classes/Post/')
             .then(function (data) {
-            var keyWordsRepo = keyWords.split(' ');
+                var keyWordsRepo = keyWords.split(' ');
 
-            for (var index = 0; index < data.results.length && keyWords.length != 0; index++) {
-                if (!data.results[index]) {
-                    break;
-                }
-
-                if(!data.results[index].tags){
-                    continue;
-                }
-
-                var postTags = data.results[index].tags;
-                for(var i = 0; i < postTags.length; i++){
-                    for( var z = 0; z < keyWordsRepo.length; z++){
-                        var isContain = false;
-                        if (postTags[i].toLowerCase() === keyWordsRepo[z].toLowerCase()) {
-                           isContain = true;
-                        }
-
-                        if (isContain) {
-                            var id = data.results[index].objectId;
-                            var title = data.results[index].title;
-                            var content = data.results[index].content;
-                            var author = data.results[index].author;
-                            var dateCreated = data.results[index].createdAt;
-                            var viewsCount = data.results[index].viewsCount;
-                            var voteCount = data.results[index].voteCount;
-                            var commentsCount = data.results[index].commentsCount;
-                            var img = data.results[index].img;
-                            var tags = data.results[index].tags;
-
-                            var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, null, img, tags);
-                            _this.searchPostRepo.posts.push(post);
-                        }
+                for (var index = 0; index < data.results.length && keyWords.length != 0; index++) {
+                    if (!data.results[index]) {
+                        break;
                     }
-                   
-                }
-            }
 
-            defer.resolve(_this.searchPostRepo);
+                    if(!data.results[index].tags){
+                        continue;
+                    }
+
+                    var postTags = data.results[index].tags;
+
+                    for (var i = 0; i < postTags.length; i++) {
+                        for (var z = 0; z < keyWordsRepo.length; z++) {
+                            var isContain = false;
+                            if (postTags[i].toLowerCase().trim() === keyWordsRepo[z].toLowerCase().trim() ||
+                                keyWordsRepo[z].toLowerCase().trim() === data.results[index].title ||
+                                data.results[index].title.indexOf(keyWordsRepo[z].toLowerCase().trim()) >= 0) {
+
+                                isContain = true;
+                            }
+
+                            if (isContain) {
+                                var id = data.results[index].objectId;
+                                var title = data.results[index].title;
+                                var content = data.results[index].content;
+                                var author = data.results[index].author;
+                                var dateCreated = data.results[index].createdAt;
+                                var viewsCount = data.results[index].viewsCount;
+                                var voteCount = data.results[index].voteCount;
+                                var commentsCount = data.results[index].commentsCount;
+                                var img = data.results[index].img;
+                                var tags = data.results[index].tags;
+
+                                var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, null, img, tags);
+                                _this.searchPostRepo.posts.push(post);
+                                break;
+                            }
+                        }
+                        if (isContain) {
+                            break;
+                        }
+
+                    }
+                }
+
+                defer.resolve(_this.searchPostRepo);
             }, function (error) {
                 defer.reject(error);
             });
