@@ -198,7 +198,7 @@ footer {
 #hiUserName {
   float: right;
   /*width: 100px;*/
-  height: 83px;
+  height: 0px;
   margin-top: 32px;
 
 }
@@ -240,7 +240,7 @@ footer {
   margin: auto;
   background-color: #f96c65;
   border-radius: 5px;
-  float: center;
+  float: none;
   display: block;
   border: none;
   color: #fff;
@@ -842,6 +842,36 @@ input:focus ~ #mock-cursor {
   -webkit-transition:.5s;
   transition:.5s;
 }
+
+#createNewPost {
+  width: 142px;
+  height: 37px;
+  background-color: #f96c65;
+  float: none;
+  margin-top: 25px;
+  border-radius: 6px;
+  margin: 10px auto 0 auto;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+}
+
+#createNewPost:hover {
+  background-color: #de5959;
+}
+
+#createNewPost a {
+  font-weight: bold;
+  margin-left: 12px;
+  margin-top: 10px;
+  font-size: 17px;
+  text-decoration: none;
+  color: #fff;
+  float: left;
+}
+
 .adminPostViewButton:hover {
   background-color: #de5959;
 }
@@ -1014,7 +1044,7 @@ input:focus ~ #mock-cursor {
   font-size: 18px;
 } 
 
-{
+ {
   width: 195px;
   height: 37px;
   background-color: #f96c65;
@@ -1032,7 +1062,7 @@ input:focus ~ #mock-cursor {
 }
 #tagsContainer {
   width: 300px;
-  max-height: : 300px;
+  max-height: 300px;
 }
 .tag {
   width: auto;
