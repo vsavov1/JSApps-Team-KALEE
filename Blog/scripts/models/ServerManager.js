@@ -63,10 +63,10 @@ app.serverManager = (function() {
                             var viewsCount = data.results[index].viewsCount;
                             var voteCount = data.results[index].voteCount;
                             var commentsCount = data.results[index].commentsCount;
-                            var commentsCount = data.results[index].commentsCount;
+                            var img = data.results[index].img;
                             var tags = data.results[index].tags;
-                            var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, "comments", "", tags);
 
+                            var post = new Post(id, title, content, author, dateCreated, viewsCount, voteCount, commentsCount, null, img, tags);
                             _this.searchPostRepo.posts.push(post);
                         }
                     }

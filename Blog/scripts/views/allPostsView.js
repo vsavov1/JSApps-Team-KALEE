@@ -2,7 +2,7 @@ var app = app || {};
 
 app.allPostsView = (function() {
     function AllPostsView(selector, data) {
-        $.get('templates/mediumPost.html', function(template) {
+        $.get('templates/searchResults.html', function(template) {
             $("#leftSide").empty();
             $('#rightSide').empty();
             $('#center').empty();

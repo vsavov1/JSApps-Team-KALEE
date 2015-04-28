@@ -749,6 +749,10 @@ input:focus ~ #mock-cursor {
 .searchPost img{
   float: left;
 }
+#searchPostImg {
+  max-width: 160px;
+  max-height: 210px;
+}
 
 .searchPostInfo {
   width: 195px;

@@ -33,8 +33,6 @@ app.homeView = (function() {
             });
         }
 
-      
-
         $("#searchButton").unbind('click').click(function () {
             if($("#menuLinks").length && !$("#searchInput").length){
                 $("#menuLinks").hide();
