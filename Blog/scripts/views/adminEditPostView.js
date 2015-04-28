@@ -13,9 +13,11 @@ app.adminEditPostView = (function() {
                 var title = $('#titleField').val();
                 var content = $('#contentField').val();
                 var author = $('#authorField').val();
+                var tags = $('#tagsField').val().split(',');
+                var pic = $('#pictureField').val();
 
                 var splitted = window.location.href.split('/');
-                app.model.editPost(splitted[splitted.length - 1], title, content, author)
+                app.model.editPost(splitted[splitted.length - 1], title, content, author, tags, pic)
                     .then(function (data) {
                         poppy.pop('success', 'Edit successful', 'You have edited the post successfully');
                         splitted = window.location.href.split('#');

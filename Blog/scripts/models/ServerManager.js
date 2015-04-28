@@ -304,12 +304,14 @@ app.serverManager = (function() {
     /*
      * Edits a given post from the database, switching the old properties with the new ones.
      */
-    ServerManager.prototype.editPost = function(id, title, content, author) {
+    ServerManager.prototype.editPost = function(id, title, content, author, tags, pic) {
         var defer = Q.defer();
         var data = {
             'title': title,
             'content': content,
-            'author': author
+            'author': author,
+            'tags': tags,
+            'img': pic
         };
 
         this._requester.put('classes/Post/' + id, data)
