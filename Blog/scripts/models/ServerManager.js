@@ -154,7 +154,7 @@ app.serverManager = (function() {
                 defer.reject(error);
             });
         return defer.promise;
-    }
+    };
 
 
     ServerManager.prototype.getMostViewedPosts = function () {
@@ -189,7 +189,7 @@ app.serverManager = (function() {
                 defer.reject(error);
             });
         return defer.promise;
-    }
+    };
 
     ServerManager.prototype.getTopPosts = function () {
         var defer = Q.defer();
@@ -221,29 +221,6 @@ app.serverManager = (function() {
                 defer.resolve(_this.topPostRepo);
             }, function (error) {
                 defer.reject(error);
-            });
-
-        return defer.promise;
-    };
-
-    ServerManager.prototype.getComment = function(id) {
-        var defer = Q.defer();
-        var _this = this;
-
-        this._requester.get('classes/Comment/' + id)
-            .then(function(data) {
-                var id = data.objectId;
-                var content = data.content;
-                var author = data.author;
-                var date = new Date(data.createdAt);
-                var commetNumber = data.commentNumber;
-                var dateCreated = ((date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear());
-
-                var comment = new Comment(id, content, author, dateCreated, commetNumber);
-
-                defer.resolve(comment);
-            }, function(error) {
-                defer.reject(console.log(error));
             });
 
         return defer.promise;
@@ -407,14 +384,7 @@ app.serverManager = (function() {
      * Creates a new Comment in the database for a given post (given by objectId) 
      * with the corresponding properties (author, content).
      */
-    ServerManager.prototype.loadComment =  function (id) {
-        this.getComment(id)
-            .then(function(data) {
-                app.commentView.load('#comments', data);
-            }, function(error) {
-                console.log(error);
-            })
-    };
+
 
     ServerManager.prototype.postComment = function(postId, author, content) {
         var _this = this;
@@ -430,16 +400,15 @@ app.serverManager = (function() {
             }
         };
 
+        var comment = data;
+
         this._requester.post('classes/Comment', data)
             .then(function (data) {
-                _this.getComment(data.objectId)
-                    .then(function(data) {
-                        defer.resolve(app.commentView.load('#comments', data));
-                    }, function(error) {
-                        console.log(error);
-                    })
+                var date = new Date();
+                comment.dateCreated = ((date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear());
+                defer.resolve(app.commentView.load('#comments', comment));
             }, function (error) {
-               defer.reject(error);
+                defer.reject(error);
             });
 
         return defer.promise;
