@@ -24,6 +24,7 @@ app.controller = (function() {
         } else {
             $('#loginButton').html('<p>Login</p>');
             $('#hiUserName').text('');
+            $('#adminPageButton').css('display', 'none');
         }
     }
 
@@ -85,10 +86,12 @@ app.controller = (function() {
     };
 
     Controller.prototype.getLoginPage = function (selector) {
+        var _this = this;
         if (localStorage['logged-in']) {
             app.model.logout().then(function(data) {
                 var splitted = window.location.href.split('#');
                 window.location.replace(splitted[0] + '#/');
+                _this.loadInitialView();
                 poppy.pop('success', 'Success', 'You have logged out successfully');
             });
         } else {
