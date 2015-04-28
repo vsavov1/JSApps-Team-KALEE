@@ -15,7 +15,7 @@ app.adminCreatePostPage = (function() {
                 var postText = $('#postText').val();
                 var author = localStorage['username'];
                 var picUrl = $('#picUrl').val();
-                var tags = $('#tags').val().split(',');
+                var tags = $('#tags').val().split(/[, ]+/);
                 
                 app.model.newPost(postTitle, postText, author, picUrl, tags)
                     .then(function(data){
