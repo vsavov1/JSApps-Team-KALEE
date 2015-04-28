@@ -317,6 +317,8 @@ app.serverManager = (function() {
             'title': title,
             'content': content,
             'author': author,
+            'voteCount': 0,
+            'viewsCount' : 0,
             'img': picUrl,
             'tags': tags
         };
