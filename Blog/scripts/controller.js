@@ -14,6 +14,13 @@ app.controller = (function() {
                 localStorage['username'] + '</span>');
             $('#loginButton').html('<p>Logout</p>');
             $('#registerButton').remove();
+
+            this.model.isValidAdmin()
+                .then(function(data) {
+                    $('#adminPageButton').css('display', 'inline');
+                }, function(error) {
+                    $('#adminPageButton').css('display', 'none');
+                });
         } else {
             $('#loginButton').html('<p>Login</p>');
             $('#hiUserName').text('');
@@ -94,24 +101,42 @@ app.controller = (function() {
     };  // No register page for now
     
     Controller.prototype.getAdminPage = function (selector) {
-        this.loadInitialView();
-        this.model.getPosts()
-            .then(function(data){
-                app.adminView.load(selector, data);
-            }, function(error){
-                console.error(error);
+        var _this = this;
+
+        this.model.isValidAdmin()
+            .then(function (data) {
+                _this.loadInitialView();
+                _this.model.getPosts()
+                    .then(function (data) {
+                        app.adminView.load(selector, data);
+                    }, function (error) {
+                        console.error(error);
+                    });
+            }, function(error) {
+                var splitted = window.location.href.split('#');
+                window.location.replace(splitted[0] + '#/');
+                poppy.pop('error', 'Forbidden', 'You do not have permissions to access this page.');
             });
     };
 
-    Controller.prototype.adminDeletePost = function(selector, id) {
-        this.model.deletePost(id)
-            .then(function(data) {
-                var splitted = window.location.href.split('#');
-                window.location.replace(splitted[0] + '#/Admin');
-                poppy.pop('success', 'Success', 'The post has been deleted successfully');
-            }, function(error) {
-                poppy.pop('error', 'Error', error.statusText);
-            });
+    Controller.prototype.adminDeletePost = function (selector, id) {
+        var _this = this;
+
+        this.model.isValidAdmin()
+            .then(function (data) {
+                _this.model.deletePost(id)
+                .then(function (data) {
+                    var splitted = window.location.href.split('#');
+                    window.location.replace(splitted[0] + '#/Admin');
+                    poppy.pop('success', 'Success', 'The post has been deleted successfully');
+                }, function (error) {
+                    poppy.pop('error', 'Error', error.statusText);
+                });
+        }, function(error) {
+            var splitted = window.location.href.split('#');
+            window.location.replace(splitted[0] + '#/');
+            poppy.pop('error', 'Forbidden', 'You do not have permissions to access this page.');
+        });
     };
 
     Controller.prototype.loadComment =  function (id) {
@@ -124,29 +149,54 @@ app.controller = (function() {
     };
 
     Controller.prototype.adminDeleteComment = function (selector, id, lastEditPostId) {
-        this.model.deleteComment(id)
-            .then(function (data) {
+        var _this = this;
+
+        this.model.isValidAdmin()
+            .then(function(data) {
+                _this.model.deleteComment(id)
+                    .then(function (data) {
+                        var splitted = window.location.href.split('#');
+                        window.location.replace(splitted[0] + '#/EditPost/' + lastEditPostId);
+                        poppy.pop('success', 'Success', 'The comment has been deleted successfully');
+                    }, function (error) {
+                        poppy.pop('error', 'Error', error.statusText);
+                    });
+            }, function(error) {
                 var splitted = window.location.href.split('#');
-                window.location.replace(splitted[0] + '#/EditPost/' + lastEditPostId);
-                poppy.pop('success', 'Success', 'The comment has been deleted successfully');
-            }, function (error) {
-                poppy.pop('error', 'Error', error.statusText);
+                window.location.replace(splitted[0] + '#/');
+                poppy.pop('error', 'Forbidden', 'You do not have permissions to access this page.');
             });
     };
 
     Controller.prototype.getAdminEditPostPage = function (selector, id) {
-        this.loadInitialView();
-        this.model.getPost(id)
-            .then(function(data){
-                app.adminEditPostView.load(selector, data);
+        var _this = this;
 
-            }, function(error){
-                console.log(error);
+        this.model.isValidAdmin()
+            .then(function (data) {
+                _this.loadInitialView();
+                _this.model.getPost(id)
+                    .then(function (data) {
+                        app.adminEditPostView.load(selector, data);
+
+                    }, function (error) {
+                        console.log(error);
+                    });
+            }, function (error) {
+                var splitted = window.location.href.split('#');
+                window.location.replace(splitted[0] + '#/');
+                poppy.pop('error', 'Forbidden', 'You do not have permissions to access this page.');
             });
     };
 
-    Controller.prototype.getAdminCreatePostPage = function(selector) {
-        app.adminCreatePostPage.load(selector);
+    Controller.prototype.getAdminCreatePostPage = function (selector) {
+        this.model.isValidAdmin()
+            .then(function (data) {
+                app.adminCreatePostPage.load(selector);
+            }, function (error) {
+                var splitted = window.location.href.split('#');
+                window.location.replace(splitted[0] + '#/');
+                poppy.pop('error', 'Forbidden', 'You do not have permissions to access this page.');
+            });
     };
 
 
