@@ -63,7 +63,11 @@ app.controller = (function() {
                     data["logged-in"] = true;
                 }
                 app.postView.load(selector, data);
-                _this.model.countView(id);
+                _this.model.viewPage(id).then(function(viewPageData) {
+                    console.log(viewPageData);
+                }, function(error) {
+                    console.log(error);
+                });
             }, function(error) {
                 poppy.pop('error', 'Error', 'There was an error loading this post. ' +
                     'Please try again later.');

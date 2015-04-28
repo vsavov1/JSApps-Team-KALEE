@@ -559,12 +559,21 @@ app.serverManager = (function() {
         return defer.promise;
     };
 
-    ServerManager.prototype.countView = function(id) {
+    ServerManager.prototype.viewPage = function (id) {
+        var defer = Q.defer();
         var data = {
             id: id,
             user: localStorage.username
         };
-        this._requester.post('functions/makeView', data);
+
+        this._requester.post('functions/makeView', data)
+            .then(function (successData) {
+                defer.resolve(successData);
+            }, function (error) {
+                defer.reject(error);
+            });
+
+        return defer.promise;
     };
 
     function identifyRole(_this, roleId) {
