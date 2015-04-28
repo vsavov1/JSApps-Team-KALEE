@@ -672,7 +672,7 @@ hr {
 #postViewCommentContent p {
   max-width: 900px;
 }
-textarea#commentContent, textarea#contentField{
+textarea#commentContent, textarea#contentField, textarea#postText{
   max-width: 1000px;
   min-width: 1000px;
   min-height: 120px;
@@ -685,7 +685,7 @@ textarea#commentContent, textarea#contentField{
   margin-bottom: 8px;
   margin-top: 8px;
 }
-#commentSend, #submitButton {
+#commentSend, #submitButton, #addPost {
   width: 195px;
   height: 37px;
   background-color: #f96c65;

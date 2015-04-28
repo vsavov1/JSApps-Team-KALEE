@@ -11,10 +11,10 @@ app.adminCreatePostPage = (function() {
             $(selector).html(output);
 
             $('#addPost').on('click', function() {
-                var postTitle = $('#postTitle').val();
-                var postText = $('#postText').val();
+                var postTitle = $('#titleField').val();
+                var postText = $('#contentField').val();
                 var author = localStorage['username'];
-                var picUrl = $('#picUrl').val();
+                var picUrl = $('#pictureField').val();
                 var tags = $('#tags').val().split(/[, ]+/);
                 
                 app.model.newPost(postTitle, postText, author, picUrl, tags)
