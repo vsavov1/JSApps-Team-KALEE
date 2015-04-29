@@ -17,13 +17,13 @@ app.postView = (function() {
                 app.model.vote(id, 'up')
                     .then(function(data) {
                         $('#rateCount').text(data.result.voteCount);
-                    }, function (error) {
+                    }, function(error) {
                         if (localStorage['logged-in']) {
-							poppy.pop('error', 'Error', 'You must be logged in in order to vote for this post.');
-						} else {
-							poppy.pop('error', 'Error', 'You already voted for this post');
-						}
-                    })
+                            poppy.pop('error', 'Error', 'You already voted for this post');
+                        } else {
+                            poppy.pop('error', 'Error', 'You must be logged in in order to vote for this post.');
+                        }
+                    });
             });
 
             $('#voteDown').on('click', function() {
@@ -33,13 +33,13 @@ app.postView = (function() {
                 app.model.vote(id, 'down')
                     .then(function(data) {
                         $('#rateCount').text(data.result.voteCount);
-                    }, function(){
-						if (localStorage['logged-in']) {
-							poppy.pop('error', 'Error', 'You must be logged in in order to vote for this post.');
-						} else {
-							poppy.pop('error', 'Error', 'You already voted for this post');
-						}
-                    })
+                    }, function() {
+                        if (localStorage['logged-in']) {
+                            poppy.pop('error', 'Error', 'You already voted for this post');
+                        } else {
+                            poppy.pop('error', 'Error', 'You must be logged in in order to vote for this post.');
+                        }
+                    });
             });
 
             if (localStorage["logged-in"]) {
