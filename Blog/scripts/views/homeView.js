@@ -48,7 +48,6 @@ app.homeView = (function() {
                             if (data.posts.length == 0) {
                                 poppy.pop('error', 'No search results', 'Please try again :)');
                             } else {
-                                console.log(data);
                                 $('#dropDownMenu').slideUp();
                                 $("#leftSide").empty();
                                 $('#rightSide').empty();

@@ -284,7 +284,7 @@ app.serverManager = (function() {
                 });
 
             }, function(error) {
-                defer.reject(console.log(error));
+                defer.reject(error);
             });
         
         return defer.promise;

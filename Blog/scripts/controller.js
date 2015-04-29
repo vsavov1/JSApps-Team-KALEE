@@ -69,13 +69,12 @@ app.controller = (function() {
         var _this = this;
         this.model.getPost(id)
             .then(function (data) {
-                console.log(data);
                 if (localStorage['logged-in']) {
                     data["logged-in"] = true;
                 }
                 app.postView.load(selector, data);
                 _this.model.viewPage(id).then(function(viewPageData) {
-                    console.log(viewPageData);
+                    
                 }, function(error) {
                     console.log(error);
                 });
