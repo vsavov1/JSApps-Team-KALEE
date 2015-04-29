@@ -31,7 +31,11 @@ app.postView = (function() {
                     .then(function(data) {
                         $('#rateCount').text(data.result.voteCount);
                     }, function(){
-                        poppy.pop('error', 'Error', 'You already voted for this post');
+						if (localStorage['logged-in']) {
+							poppy.pop('error', 'Error', 'You must be logged in in order to vote for this post.');
+						} else {
+							poppy.pop('error', 'Error', 'You already voted for this post');
+						}
                     })
             });
 
